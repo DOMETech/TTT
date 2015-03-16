@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Finisar.SQLite;
 
 namespace WpfApplication3
 {
@@ -21,17 +22,18 @@ namespace WpfApplication3
     public partial class MainWindow : Window
     {
         private bool sound;
-       
+
         public MainWindow()
         {
             InitializeComponent();
             mainMenuPanel.Visibility = Visibility.Hidden;
             loginSinglePlayer.Visibility = Visibility.Hidden;
-            sound = true;
-            soundElement.Play();
+            registerPanel.Visibility = Visibility.Hidden;
+            sound = false;
+            //soundElement.Play();
 
-                     
-            
+
+
 
         }
 
@@ -71,22 +73,22 @@ namespace WpfApplication3
 
         private void soundOnOff(object sender, MouseButtonEventArgs e)
         {
-            
+
 
             if (sound)
             {
                 soundButton.Content = "Sound: Off";
                 sound = false;
-                
+
                 try
                 {
                     soundElement.Pause();
                 }
-                catch(Exception err)
+                catch (Exception err)
                 {
-                    MessageBox.Show("Error pausing sound:\n" + err); 
+                    MessageBox.Show("Error pausing sound:\n" + err);
                 }
-                
+
             }
             else
             {
@@ -110,7 +112,7 @@ namespace WpfApplication3
             loginSinglePlayer.Visibility = Visibility.Visible;
         }
 
-     
+
         private void passwordTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             PasswordBox selectedBox = sender as PasswordBox;
@@ -138,18 +140,62 @@ namespace WpfApplication3
         private void backToMainMenu(object sender, MouseButtonEventArgs e)
         {
             loginSinglePlayer.Visibility = Visibility.Hidden;
+            registerPanel.Visibility = Visibility.Hidden;
             mainMenuPanel.Visibility = Visibility.Visible;
         }
 
-        
+        private void registration(object sender, MouseButtonEventArgs e)
+        {
+            mainMenuPanel.Visibility = Visibility.Hidden;
+            loginSinglePlayer.Visibility = Visibility.Hidden;
+            registerPanel.Visibility = Visibility.Visible;
+        }
 
-        
+        private void enterButton_Copy_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
 
-   
+            if (passRegPassBox.Password == confirmPassRegPassBox.Password)
+            {
+                // We use these three SQLite objects:
+                SQLiteConnection sqlite_conn;
+                SQLiteCommand sqlite_cmd;
 
-        
-        
+                // create a new database connection:
+                sqlite_conn = new SQLiteConnection("Data Source=TTTdatabase.db;Version=3;New=True;Compress=True;");
 
+                // open the connection:
+                sqlite_conn.Open();
+
+                // create a new SQL command:
+                
+
+                string usernameData = userRegTextBox.Text;
+                string passwordData = passRegPassBox.Password;
+                string emailData = emailTextBox.Text;
+
+                var usernameParam = new SQLiteParameter("@usernameParam", System.Data.DbType.String) { Value = usernameData };
+                var passParam = new SQLiteParameter("@passParam", System.Data.DbType.String) { Value = passwordData};
+                var emailParam = new SQLiteParameter("@emailParam", System.Data.DbType.String) { Value = emailData };
+
+                sqlite_cmd = new SQLiteCommand("INSERT INTO Users (username, password, email) VALUES (@usernameParam, @passParam, @emailParam);");
+                sqlite_cmd.Parameters.Add(usernameParam);
+                sqlite_cmd.Parameters.Add(passParam);
+                sqlite_cmd.Parameters.Add(emailParam);
+
+                try
+                {
+                    
+                    sqlite_cmd.ExecuteNonQuery();
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.ToString());
+                }
+                sqlite_conn.Close();
+
+            }
+            
+        }
 
     }
 }

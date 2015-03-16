@@ -1,0 +1,46 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="UI" x:Class="WpfApplication3.MainWindow"
+        Title="MainWindow" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+        WindowStyle="None" WindowState="Maximized" Background="Black">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <MediaElement x:Name="soundElement" Source="Sounds\spirit.mp3" Margin="10,420,653,10" Volume="1" MediaEnded="soundElement_MediaEnded" d:IsHidden="True" LoadedBehavior="Manual"/>
+
+        <StackPanel x:Name="startScreenMenu" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,93,0,212" d:IsHidden="True">
+            <Label x:Name="titleLabel" Content="Tic Tac Toe" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="72" FontWeight="Bold" Padding="5,5,5,50"/>
+            <Label x:Name="startGameButton" Content="Start Game" Background="#00000000" Foreground="White" FontSize="48" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="clickStartaGame"
+              Margin="258,0,259,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
+              />
+        </StackPanel>
+        <StackPanel x:Name="mainMenuPanel" HorizontalAlignment="Center" VerticalAlignment="Center" d:IsHidden="True">
+            <Label x:Name="singlePlayerButton" Content="Single Player" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="White"
+        		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="singlePayerButton"/>
+            <Label x:Name="multiPlayerButton" Content="Multi Player" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="White"
+        		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel"/>
+            <Label x:Name="registerButton" Content="Register" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="White"
+        		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel"/>
+            <Label x:Name="viewScoresButton" Content="View Scores" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="White"
+        		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel"/>
+            <Label x:Name="exitButton" Content="EXIT" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" Foreground="White"
+            	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="quitProgram"/>
+            <Label x:Name="soundButton" Content="Sound: On" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"
+        		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="soundOnOff"/>
+
+        </StackPanel>
+        <StackPanel x:Name="loginSinglePlayer" VerticalAlignment="Center">
+            <Label x:Name="loginLabel" Content="Login" FontSize="72" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="usernameLabel" Content="Username:" FontSize="48" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="usernameTextBox" Height="99" TextWrapping="Wrap" Margin="80,0" FontSize="72" GotFocus="usernameTextBox_GotFocus" GotMouseCapture="usernameTextBox_GotMouseCapture"/>
+            <Label x:Name="passwordLabel" Content="Password:" FontSize="48" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <PasswordBox x:Name="passwordTextBox" Height="99"  FontSize="72" Margin="80,0" GotFocus="passwordTextBox_GotFocus" GotMouseCapture="passwordTextBox_GotMouseCapture"/>
+            <Label x:Name="enterButton" Content="Enter" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel"/>
+            <Label x:Name="playAsGuestButton" Content="Play As Guest" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel"/>
+            <Label x:Name="backToMenuLabel" Content="Back To Main Menu" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

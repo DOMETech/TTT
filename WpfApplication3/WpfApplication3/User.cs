@@ -9,7 +9,7 @@ namespace WpfApplication3
     class User
     {
 
-        private String username;
+        private string username;
         private int score;
         private bool guestPlayer;
 
@@ -21,19 +21,19 @@ namespace WpfApplication3
             score = 0;
         }
 
-        public User(String userData)
+        public User(string userData)
         {
             username = userData;
             guestPlayer = false;
             score = 0;
         }
 
-        public void setUsername(String userData)
+        public void setUsername(string userData)
         {
             username = userData;
         }
 
-        public String getUsername()
+        public string getUsername()
         {
             return username;
         }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace WpfApplication3
 {
-    class User
+    public class User
     {
 
         private string username;
         private int score;
         private bool guestPlayer;
 
-
+        //Constructor use when it is a guest player
         public User()
         {
             username = "Guest";
@@ -21,11 +21,28 @@ namespace WpfApplication3
             score = 0;
         }
 
+        //Constructor use when it is a login player
         public User(string userData)
         {
             username = userData;
             guestPlayer = false;
             score = 0;
+        }
+
+        //Copy Constructor
+        public User(User prevUser)
+        {
+            username = prevUser.username;
+            score = 0;
+            guestPlayer = false;
+        }
+
+        //Desctructor
+        ~User()
+        {
+            username = "";
+            score = 0;
+            guestPlayer = false;
         }
 
         public void setUsername(string userData)

@@ -29,19 +29,23 @@ namespace WpfApplication3
         private bool multiPlayer2ScreenActive;
         private User player1;
         private User player2;
+        private bool singlePlayerGame;
 
         public MainWindow()
         {
             InitializeComponent();
             mainMenuPanel.Visibility = Visibility.Hidden;
             mainMenuScreenActive = false;
-            loginSinglePlayer.Visibility = Visibility.Hidden;
+            singlePlayerPanel.Visibility = Visibility.Hidden;
             singlePlayerScreenActive = false;
             registerPanel.Visibility = Visibility.Hidden;
             multiPlayer1Panel.Visibility = Visibility.Hidden;
             multiPlayer1ScreenActive = false;
             multiPlayer2Panel.Visibility = Visibility.Hidden;
             multiPlayer2ScreenActive = false;
+            viewScoresLabelPanel.Visibility = Visibility.Hidden;
+            difficultyPanel.Visibility = Visibility.Hidden;
+
 
             
             sound = false;//erase this if sound wanted in the program and uncomment the 2 lines bellow
@@ -128,7 +132,7 @@ namespace WpfApplication3
         {
             mainMenuPanel.Visibility = Visibility.Hidden;
             mainMenuScreenActive = false;
-            loginSinglePlayer.Visibility = Visibility.Visible;
+            singlePlayerPanel.Visibility = Visibility.Visible;
             singlePlayerScreenActive = true;
 
         }
@@ -146,9 +150,10 @@ namespace WpfApplication3
         //Back to main menu button
         private void backToMainMenu(object sender, MouseButtonEventArgs e)
         {
-            loginSinglePlayer.Visibility = Visibility.Hidden;
+            singlePlayerPanel.Visibility = Visibility.Hidden;
             multiPlayer1Panel.Visibility = Visibility.Hidden;
             multiPlayer2Panel.Visibility = Visibility.Hidden;
+            difficultyPanel.Visibility = Visibility.Hidden;
             mainMenuPanel.Visibility = Visibility.Visible;
             singlePlayerScreenActive = false;
             multiPlayer1ScreenActive = false;
@@ -169,7 +174,7 @@ namespace WpfApplication3
         private void registration(object sender, MouseButtonEventArgs e)
         {
             mainMenuPanel.Visibility = Visibility.Hidden;
-            loginSinglePlayer.Visibility = Visibility.Hidden;
+            singlePlayerPanel.Visibility = Visibility.Hidden;
             multiPlayer2Panel.Visibility = Visibility.Hidden;
             multiPlayer1Panel.Visibility = Visibility.Hidden;
             registerPanel.Visibility = Visibility.Visible;
@@ -208,17 +213,16 @@ namespace WpfApplication3
                 //Create User object for single player
                 player1 = new User(usernameTextBoxSinglePlayer.Text);
 
-                //TO-DO add the properties to display the difficulty selection settings
+                //set single player game and display difficulty panel
+                singlePlayerGame = true;
+                difficultyPanel.Visibility = Visibility.Visible;
+                singlePlayerPanel.Visibility = Visibility.Hidden;
 
-
-
-                //This if for testing remove when finish
-                MessageBox.Show("It work your username is: " + player1.getUsername());
 
             }
             else
             {
-                MessageBox.Show("The username and/or password you input do not match our records./nPlease try again.");
+                MessageBox.Show("The username and/or password you input do not match our records.\nPlease try again.");
             }
 
         }
@@ -245,11 +249,104 @@ namespace WpfApplication3
             }
         }
 
+        //Login PLayer 2 multiplayer
+        private void loginMulti2(object sender, MouseButtonEventArgs e)
+        {
+            if (checkUsernameAndPassword(usernameBoxMultiPlayer2.Text, passwordBoxMultiPlayer2.Password))
+            {
+                //Create user object for player 2
+                player2 = new User(usernameBoxMultiPlayer2.Text);
+
+                //Launch the difficulty panel and set singlePlayerGame false
+                singlePlayerGame = false;
+                difficultyPanel.Visibility = Visibility.Visible;
+                multiPlayer2Panel.Visibility = Visibility.Hidden;
+
+
+            }
+            else
+            {
+                MessageBox.Show("The username and/or password you input do not match our records./nPlease try again.");
+            }
+
+        }
+
+        //Player 1 play as guest multiplayer Game
+        private void playAsGuestMulti1(object sender, MouseButtonEventArgs e)
+        {
+            //Create an empty user object since it is a guest
+            player1 = new User();
+
+            multiPlayer1Panel.Visibility = Visibility.Hidden;
+            multiPlayer1ScreenActive = false;
+            multiPlayer2Panel.Visibility = Visibility.Visible;
+            multiPlayer2ScreenActive = true;
+
+        }
+
+        //PLayer 2 in multiplayer plays as guest
+        private void playAsGuestMulti2(object sender, MouseButtonEventArgs e)
+        {
+            
+            //Create an empty user object for player 2
+            player2 = new User();
+
+            //Launch the difficulty panel and set singlePlayerGame false
+            singlePlayerGame = false;
+            difficultyPanel.Visibility = Visibility.Visible;
+            multiPlayer2Panel.Visibility = Visibility.Hidden;
+
+
+        }
+              
+
         //Back button registration
         private void backButtonReg(object sender, MouseButtonEventArgs e)
         {
             backRegistration();
         }
+
+        //ViewScores button action
+        private void viewScoresButtonAction(object sender, MouseButtonEventArgs e)
+        {
+            mainMenuPanel.Visibility = Visibility.Hidden;
+            mainMenuScreenActive = false;
+            viewScoresLabelPanel.Visibility = Visibility.Visible;
+        }
+
+        //Play as guest single player
+        private void playAsGuestSinglePlayer(object sender, MouseButtonEventArgs e)
+        {
+            player1 = new User();
+            singlePlayerGame = true;
+
+            //TO-DO dislpay difficulty levels
+            difficultyPanel.Visibility = Visibility.Visible;
+            singlePlayerPanel.Visibility = Visibility.Hidden;
+
+        }
+
+        //easy difficulty button
+        private void easyButtonAction(object sender, MouseButtonEventArgs e)
+        {
+            
+            createGame(singlePlayerGame, 1);
+
+        }
+
+        //Medium difficulty button
+        private void mediumButtonAction(object sender, MouseButtonEventArgs e)
+        {
+            createGame(singlePlayerGame, 2);
+        }
+
+        //Hard difficulty button
+        private void hardButtonAction(object sender, MouseButtonEventArgs e)
+        {
+
+            createGame(singlePlayerGame, 3);
+        }
+
         
 
         /*
@@ -260,6 +357,28 @@ namespace WpfApplication3
          * 
          * 
          * */
+
+        //Creates the game difficulty 1=Easy, 2=Medium, 3=Hard
+        private void createGame(bool playingMode, int difficulty)
+        {
+                     
+            if (playingMode)//If single player
+            {
+                GameWindow game = new GameWindow(player1, difficulty);
+                
+                game.Show();
+                this.Close();
+            }
+            else//if multiplayer
+            {
+                GameWindow game = new GameWindow(player1, player2, difficulty);
+
+                game.Show();
+                this.Close();
+
+            }
+            
+        }
 
         //Back action from registration screen
         private void backRegistration()
@@ -272,7 +391,7 @@ namespace WpfApplication3
             if (singlePlayerScreenActive)//the previouse screen was the login single player screen
             {
                 registerPanel.Visibility = Visibility.Hidden;
-                loginSinglePlayer.Visibility = Visibility.Visible;
+                singlePlayerPanel.Visibility = Visibility.Visible;
 
             }
             else if (mainMenuScreenActive)//the previouse screen was the main menu
@@ -421,6 +540,7 @@ namespace WpfApplication3
             
         }
 
+        
         
 
     }

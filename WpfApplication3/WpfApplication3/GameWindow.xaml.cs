@@ -23,6 +23,10 @@ namespace WpfApplication3
         private User player2;
         private int difficulty;
 
+        private int cpuScore;
+
+        private bool playerOneTurn;     //Change true if it is player 1 turn or false if player 2 turn
+
         //Empty game
         public GameWindow()
         {
@@ -33,28 +37,75 @@ namespace WpfApplication3
         //Single player game
         public GameWindow(User player, int difficultyLevel)
         {
-
+            //Create object for player 
             player1 = new User(player);
+            
+            //Set difficulty
             difficulty = difficultyLevel;
-
+            
+            //Initilize components in the window
             InitializeComponent();
+            
+            //change the text of player 1 label and player 2 to 'CPU'
+            player1Label.Content = player1.getUsername()+":";
+            player2Label.Content = "CPU:";
 
-            MessageBox.Show(player1.getUsername());
+            //change game mode label to 'Single Player:' + difficulty
+            if (difficulty == 1)
+            {
+                gameModeLabel.Content = "Single Player: Easy";
+            }
+            else if (difficulty == 2)
+            {
+                gameModeLabel.Content = "Single Player: Medium";
+            }
+            else
+            {
+                gameModeLabel.Content = "Single Player: Hard";
+            }
+
+            //change score label to 0
+            score1Label.Content = player1.getScore();
+            cpuScore = 0;
+            score2Label.Content = cpuScore;
         }
 
         //Multiplayer game
         public GameWindow(User playerOne, User playerTwo, int difficultyLevel)
         {
+            //create user objects for each player
             player1 = new User(playerOne);
             player2 = new User(playerTwo);
 
+            //set difficulty
             difficulty = difficultyLevel;
 
             InitializeComponent();
 
-            MessageBox.Show(player1.getUsername());
-            MessageBox.Show(player2.getUsername());
-           
+            //change the text of player 1 label and player 2 label
+            player1Label.Content = player1.getUsername() + ":";
+            player2Label.Content = player2.getUsername() + ":";
+
+            //change game mode label to 'Single Player:' + difficulty
+            if (difficulty == 1)
+            {
+                gameModeLabel.Content = "Multi Player: Easy";
+            }
+            else if (difficulty == 2)
+            {
+                gameModeLabel.Content = "Multi Player: Medium";
+            }
+            else
+            {
+                gameModeLabel.Content = "Multi Player: Hard";
+            }
+
+            //change score label to 0
+            score1Label.Content = player1.getScore();
+            score2Label.Content = player2.getScore();
+            
         }
+
+       
     }
 }

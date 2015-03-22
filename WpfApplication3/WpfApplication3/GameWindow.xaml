@@ -4,5 +4,69 @@
         Title="GameWindow" Height="900" Width="1400" Background="Black"
         VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStyle="None"
         WindowState="Maximized">
-    <Grid/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="244*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="245*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="149*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="150*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="A1" Content="" Grid.Column="2" Grid.Row="1" Background="White"/>
+        <Button x:Name="A2" Content="" Grid.Column="3" Grid.Row="1" Background="White"/>
+        <Button x:Name="A3" Content="" Grid.Column="4" Grid.Row="1" Background="White"/>
+        <Button x:Name="A4" Content="" Grid.Column="5" Grid.Row="1" Background="White"/>
+        <Button x:Name="A5" Content="" Grid.Column="6" Grid.Row="1" Background="White"/>
+        <Button x:Name="A6" Content="" Grid.Column="7" Grid.Row="1" Background="White"/>
+        <Button x:Name="B1" Content="" Grid.Column="2" Grid.Row="2" Background="White"/>
+        <Button x:Name="B2" Content="" Grid.Column="3" Grid.Row="2" Background="White"/>
+        <Button x:Name="B3" Content="" Grid.Column="4" Grid.Row="2" Background="White"/>
+        <Button x:Name="B4" Content="" Grid.Column="5" Grid.Row="2" Background="White"/>
+        <Button x:Name="B5" Content="" Grid.Column="6" Grid.Row="2" Background="White"/>
+        <Button x:Name="B6" Content="" Grid.Column="7" Grid.Row="2" Background="White"/>
+        <Button x:Name="C1" Content="" Grid.Column="2" Grid.Row="3" Background="White"/>
+        <Button x:Name="C2" Content="" Grid.Column="3" Grid.Row="3" Background="White"/>
+        <Button x:Name="C3" Content="" Grid.Column="4" Grid.Row="3" Background="White"/>
+        <Button x:Name="C4" Content="" Grid.Column="5" Grid.Row="3" Background="White"/>
+        <Button x:Name="C5" Content="" Grid.Column="6" Grid.Row="3" Background="White"/>
+        <Button x:Name="C6" Content="" Grid.Column="7" Grid.Row="3" Background="White"/>
+        <Button x:Name="D1" Content="" Grid.Column="2" Grid.Row="4" Background="White"/>
+        <Button x:Name="D2" Content="" Grid.Column="3" Grid.Row="4" Background="White"/>
+        <Button x:Name="D3" Content="" Grid.Column="4" Grid.Row="4" Background="White"/>
+        <Button x:Name="D4" Content="" Grid.Column="5" Grid.Row="4" Background="White"/>
+        <Button x:Name="D5" Content="" Grid.Column="6" Grid.Row="4" Background="White"/>
+        <Button x:Name="D6" Content="" Grid.Column="7" Grid.Row="4" Background="White"/>
+        <Button x:Name="E1" Content="" Grid.Column="2" Grid.Row="5" Background="White"/>
+        <Button x:Name="E2" Content="" Grid.Column="3" Grid.Row="5" Background="White"/>
+        <Button x:Name="E3" Content="" Grid.Column="4" Grid.Row="5" Background="White"/>
+        <Button x:Name="E4" Content="" Grid.Column="5" Grid.Row="5" Background="White"/>
+        <Button x:Name="E5" Content="" Grid.Column="6" Grid.Row="5" Background="White"/>
+        <Button x:Name="E6" Content="" Grid.Column="7" Grid.Row="5" Background="White"/>
+        <Button x:Name="F1" Content="" Grid.Column="2" Grid.Row="6" Background="White"/>
+        <Button x:Name="F2" Content="" Grid.Column="3" Grid.Row="6" Background="White"/>
+        <Button x:Name="F3" Content="" Grid.Column="4" Grid.Row="6" Background="White"/>
+        <Button x:Name="F4" Content="" Grid.Column="5" Grid.Row="6" Background="White"/>
+        <Button x:Name="F5" Content="" Grid.Column="6" Grid.Row="6" Background="White"/>
+        <Button x:Name="F6" Content="" Grid.Column="7" Grid.Row="6" Background="White"/>
+        <Label x:Name="player1Label" Content="Player 1:" Grid.Row="1" Foreground="White" FontSize="72" HorizontalAlignment="Right"/>
+        <Label x:Name="player2Label" Content="Player 2:" Foreground="White" FontSize="72" Grid.Column="9" Grid.Row="1" HorizontalAlignment="Left"/>
+        <Label x:Name="score1Label" Content="Score" Grid.Row="4" Foreground="White" FontSize="72" HorizontalAlignment="Right"/>
+        <Label x:Name="score2Label" Content="Score" Foreground="White" FontSize="72" Grid.Column="9" Grid.Row="4" HorizontalAlignment="Left"/>
+        <Label x:Name="gameModeLabel" Content="Game Mode" Grid.Column="1" Grid.ColumnSpan="8" Foreground="White" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
 </Window>

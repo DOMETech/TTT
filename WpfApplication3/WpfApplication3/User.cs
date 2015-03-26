@@ -34,7 +34,7 @@ namespace WpfApplication3
         {
             username = prevUser.username;
             score = 0;
-            guestPlayer = false;
+            guestPlayer = prevUser.guestPlayer;
         }
 
         //Desctructor

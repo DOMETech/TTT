@@ -80,8 +80,8 @@
                 <RowDefinition Height="736*"/>
             </Grid.RowDefinitions>
             <Label x:Name="selectWhoStartsLabel" Content="Select Who Starts The Game" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="68" Foreground="White" Height="106" Margin="243,27,243,26" Width="909" Grid.ColumnSpan="2"/>
-            <Label x:Name="selectPlayer1Label" Content="Player 1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="68" Foreground="White" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer1Label_MouseLeftButtonDown"/>
-            <Label x:Name="selectPlayer2Label" Content="Player 2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="68" Foreground="White" Grid.Column="1" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer2Label_MouseLeftButtonDown"/>
+            <Label x:Name="selectPlayer1Label" Content="Player 1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="68" Foreground="White" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer1Action"/>
+            <Label x:Name="selectPlayer2Label" Content="Player 2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="68" Foreground="White" Grid.Column="1" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer2Action"/>
         </Grid>
         <Rectangle x:Name="playerOneIndicator" Fill="#FF3BB9D1" HorizontalAlignment="Right" Height="30" VerticalAlignment="Bottom" Width="30" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
             <Rectangle.RenderTransform>

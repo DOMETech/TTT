@@ -22,7 +22,7 @@ namespace WpfApplication3
     public partial class MainWindow : Window
     {
         //SQL Connection string
-        private string sqlconnection = "Data Source=TTTdatabase.sqlite;Version=3;";
+        private const string sqlconnection = "Data Source=TTTdatabase.sqlite;Version=3;";
     
         private bool mainMenuScreenActive;
         private bool singlePlayerScreenActive;
@@ -422,8 +422,7 @@ namespace WpfApplication3
             multiPlayer2Panel.Visibility = Visibility.Hidden;
 
 
-        }
-              
+        }              
 
         //Back button registration
         private void backButtonReg(object sender, MouseButtonEventArgs e)
@@ -452,25 +451,24 @@ namespace WpfApplication3
 
         }
 
-        //easy difficulty button
-        private void easyButtonAction(object sender, MouseButtonEventArgs e)
+        //difficulty button action
+        private void difficultyButtonAction(object sender, MouseButtonEventArgs e)
         {
-            
-            createGame(singlePlayerGame, 1);
+            Label difficultySelected = sender as Label;
 
-        }
+            if (difficultySelected.Content.ToString() == "Easy")
+            {
+                createGame(singlePlayerGame, 1);
+            }
+            else if (difficultySelected.Content.ToString() == "Medium")
+            {
+                createGame(singlePlayerGame, 2);
+            }
+            else if (difficultySelected.Content.ToString() == "Hard")
+            {
+                createGame(singlePlayerGame, 3);
+            }
 
-        //Medium difficulty button
-        private void mediumButtonAction(object sender, MouseButtonEventArgs e)
-        {
-            createGame(singlePlayerGame, 2);
-        }
-
-        //Hard difficulty button
-        private void hardButtonAction(object sender, MouseButtonEventArgs e)
-        {
-
-            createGame(singlePlayerGame, 3);
         }
 
         //Change difficulty scores in the view scores panel
@@ -496,7 +494,8 @@ namespace WpfApplication3
         /*
          * 
          * 
-         * Functions to be use int he program by the buttons actions
+         * Functions to be use in the program by the buttons and other actions do not change
+         * mainly include database functions
          * 
          * 
          * 
@@ -525,6 +524,7 @@ namespace WpfApplication3
         }
 
         //Function to set the labels for the view score panel
+        //Database is involve in here
         private void setScoresLabels(string difficultySelected)
         {
             //create connection with the database
@@ -664,6 +664,7 @@ namespace WpfApplication3
         }
         
         //Check username and password function
+        //Database is involve in here
         private bool checkUsernameAndPassword(string username, string password){
 
             //create connection with the database
@@ -690,6 +691,7 @@ namespace WpfApplication3
         }
 
         //Function to check if username exists in the database
+        //Database is involve in here
         private bool checkUsername(string username)
         {
             //Connect to the database
@@ -717,6 +719,7 @@ namespace WpfApplication3
         }
 
         //Function to register users to the database
+        //Database is involve in here
         private void registerUser(string username, string password, string email)
         {
             //Create connection with the database
@@ -801,6 +804,7 @@ namespace WpfApplication3
         }
         //
         //
+
         /*
          * 
          * 

@@ -57,7 +57,7 @@
             <Label x:Name="enterButton_Copy"  Content="Enter" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Margin="651.5,0" MouseLeftButtonDown="enterButtonRegistration"/>
             <Label x:Name="backToMenuLabel_Copy"  Content="Back" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backButtonReg" Margin="535,0"/>
         </StackPanel>
-        <Grid x:Name="viewScoresPanel">
+        <Grid x:Name="viewScoresPanel" d:IsHidden="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="350*"/>
                 <ColumnDefinition Width="350*"/>
@@ -108,13 +108,13 @@
             <Label x:Name="fifthPlaceHighestLabel"  Content="5. Highest" Grid.Row="6" Foreground="White" FontSize="48" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="sixthPlaceHighestLabel"  Content="6. Highest" Grid.Row="7" Foreground="White" FontSize="48" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
-        <StackPanel x:Name="difficultyPanel" VerticalAlignment="Center" d:IsHidden="True">
+        <StackPanel x:Name="difficultyPanel" VerticalAlignment="Center">
             <Label x:Name="easyButton"  Content="Easy" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="68" Foreground="White"
-        		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="easyButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="difficultyButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="mediumButton"  Content="Medium" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="68" Foreground="White"
-            	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="mediumButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="difficultyButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="hardButton"  Content="Hard" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="68" Foreground="White"
-            	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="hardButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="560,0"/>
+            	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="difficultyButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="560,0"/>
             <Label x:Name="backToMenuButton2_Copy2"  Content="Back To Main Menu" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu" Margin="535.25,0"/>
         </StackPanel>
         <Grid x:Name="multiplayerPanel" d:IsHidden="True">

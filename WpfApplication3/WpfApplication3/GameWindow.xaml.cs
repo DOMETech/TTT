@@ -21,8 +21,7 @@ namespace WpfApplication3
     public partial class GameWindow : Window
     {
         //String for database connection
-        private string sqlconnection = "Data Source=TTTdatabase.sqlite;Version=3;";
-
+        private const string sqlconnection = "Data Source=TTTdatabase.sqlite;Version=3;";
 
         private User player1;
         private User player2;
@@ -156,7 +155,7 @@ namespace WpfApplication3
 
         }
 
-        private void selectPlayer1Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void selectPlayer1Action(object sender, MouseButtonEventArgs e)
         {
             playerOneTurn = true;
             selectWhoStartsPanel.Visibility = Visibility.Hidden;
@@ -164,7 +163,7 @@ namespace WpfApplication3
 
         }
 
-        private void selectPlayer2Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void selectPlayer2Action(object sender, MouseButtonEventArgs e)
         {
             playerOneTurn = false;
             selectWhoStartsPanel.Visibility = Visibility.Hidden;
@@ -442,8 +441,15 @@ namespace WpfApplication3
             //execute command
             SQLiteDataReader reader = cmd.ExecuteReader();
 
-            if (reader.Read())
+            bool found = reader.Read();//true if found false if not
+
+            conn.Close();
+
+            if (found)
             {
+                //open connection
+                conn.Open();
+
                 //Update the winning column for the user
                 sql = "UPDATE " + difficultyStr + "Score SET wins = wins + 1 WHERE username='" + player.getUsername() + "'";
 
@@ -454,7 +460,7 @@ namespace WpfApplication3
                 cmd.ExecuteNonQuery();
 
                 //Now lets check if the highest score needs to be updated for that table
-                sql = "UPDATE " + difficultyStr + "Score SET highestScore = " + player.getScore() + "WHERE username='" +
+                sql = "UPDATE " + difficultyStr + "Score SET highestScore = " + player.getScore() + " WHERE username='" +
                     player.getUsername() + "' AND highestScore<" + player.getScore();
 
                 //create command
@@ -462,9 +468,13 @@ namespace WpfApplication3
 
                 //execute command
                 cmd.ExecuteNonQuery();
+
+                conn.Close();
             }
             else
             {
+                conn.Open();
+
                 //insert the user into table
                 sql = "INSERT INTO " + difficultyStr + "Score (username, wins, loses, highestScore) VALUES('" +
                     player.getUsername() + "', 1, 0, " + player.getScore() + ")";
@@ -474,9 +484,11 @@ namespace WpfApplication3
 
                 //execute command
                 cmd.ExecuteNonQuery();
+
+                conn.Close();
             }
 
-            conn.Close();
+            
         }
 
         //Function to add a losing point to the database

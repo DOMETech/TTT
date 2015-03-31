@@ -276,8 +276,7 @@ namespace WpfApplication3
 
                         //set single player game and display difficulty panel
                         singlePlayerGame = true;
-                        difficultyPanel.Visibility = Visibility.Visible;
-                        singlePlayerPanel.Visibility = Visibility.Hidden;
+                        displayDifficulty();
 
 
                     }
@@ -321,10 +320,7 @@ namespace WpfApplication3
                         //Create user object for player 1
                         player1 = new User(usernameBoxMultiPlayer1.Text);
 
-                        multiPlayer1Panel.Visibility = Visibility.Hidden;
-                        multiPlayer1ScreenActive = false;
-                        multiPlayer2Panel.Visibility = Visibility.Visible;
-                        multiPlayer2ScreenActive = true;
+                        displayMultiplayer2();
 
 
                     }
@@ -366,8 +362,7 @@ namespace WpfApplication3
 
                         //Launch the difficulty panel and set singlePlayerGame false
                         singlePlayerGame = false;
-                        difficultyPanel.Visibility = Visibility.Visible;
-                        multiPlayer2Panel.Visibility = Visibility.Hidden;
+                        displayDifficulty();
 
 
                     }
@@ -402,10 +397,7 @@ namespace WpfApplication3
             //Create an empty user object since it is a guest
             player1 = new User();
 
-            multiPlayer1Panel.Visibility = Visibility.Hidden;
-            multiPlayer1ScreenActive = false;
-            multiPlayer2Panel.Visibility = Visibility.Visible;
-            multiPlayer2ScreenActive = true;
+            displayMultiplayer2();
 
         }
 
@@ -418,8 +410,7 @@ namespace WpfApplication3
 
             //Launch the difficulty panel and set singlePlayerGame false
             singlePlayerGame = false;
-            difficultyPanel.Visibility = Visibility.Visible;
-            multiPlayer2Panel.Visibility = Visibility.Hidden;
+            displayDifficulty();
 
 
         }              
@@ -446,8 +437,7 @@ namespace WpfApplication3
             singlePlayerGame = true;
 
             //TO-DO dislpay difficulty levels
-            difficultyPanel.Visibility = Visibility.Visible;
-            singlePlayerPanel.Visibility = Visibility.Hidden;
+            displayDifficulty();
 
         }
 
@@ -500,6 +490,22 @@ namespace WpfApplication3
          * 
          * 
          * */
+         
+         //Displaye difficulty panel
+         private void displayDifficulty(){
+             difficultyPanel.Visibility = Visibility.Visible;
+            singlePlayerPanel.Visibility = Visibility.Hidden;
+         }
+         
+         //Displaye player 2 multiplayer screen
+         private void displayMultiplayer2(){
+             
+            multiPlayer1Panel.Visibility = Visibility.Hidden;
+            multiPlayer1ScreenActive = false;
+            multiPlayer2Panel.Visibility = Visibility.Visible;
+            multiPlayer2ScreenActive = true;
+             
+         }
                
         //Creates the game difficulty 1=Easy, 2=Medium, 3=Hard
         private void createGame(bool playingMode, int difficulty)

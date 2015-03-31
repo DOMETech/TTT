@@ -158,14 +158,18 @@ namespace WpfApplication3
         private void selectPlayer1Action(object sender, MouseButtonEventArgs e)
         {
             playerOneTurn = true;
-            selectWhoStartsPanel.Visibility = Visibility.Hidden;
-            playerOneIndicator.Visibility = Visibility.Visible;
+            displayGameBoard();
 
         }
 
         private void selectPlayer2Action(object sender, MouseButtonEventArgs e)
         {
             playerOneTurn = false;
+            displayGameBoard();
+        }
+        
+        //Function to display gameBoard
+        private void displayGameBoard(){
             selectWhoStartsPanel.Visibility = Visibility.Hidden;
             playerTwoIndicatior.Visibility = Visibility.Visible;
         }

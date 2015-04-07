@@ -28,45 +28,47 @@
             <RowDefinition Height="100*"/>
             <RowDefinition Height="150*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="A1" Content="" Grid.Column="2" Grid.Row="1" Background="White"/>
-        <Button x:Name="A2" Content="" Grid.Column="3" Grid.Row="1" Background="White"/>
-        <Button x:Name="A3" Content="" Grid.Column="4" Grid.Row="1" Background="White"/>
-        <Button x:Name="A4" Content="" Grid.Column="5" Grid.Row="1" Background="White"/>
-        <Button x:Name="A5" Content="" Grid.Column="6" Grid.Row="1" Background="White"/>
-        <Button x:Name="A6" Content="" Grid.Column="7" Grid.Row="1" Background="White"/>
-        <Button x:Name="B1" Content="" Grid.Column="2" Grid.Row="2" Background="White"/>
-        <Button x:Name="B2" Content="" Grid.Column="3" Grid.Row="2" Background="White"/>
-        <Button x:Name="B3" Content="" Grid.Column="4" Grid.Row="2" Background="White"/>
-        <Button x:Name="B4" Content="" Grid.Column="5" Grid.Row="2" Background="White"/>
-        <Button x:Name="B5" Content="" Grid.Column="6" Grid.Row="2" Background="White"/>
-        <Button x:Name="B6" Content="" Grid.Column="7" Grid.Row="2" Background="White"/>
-        <Button x:Name="C1" Content="" Grid.Column="2" Grid.Row="3" Background="White"/>
-        <Button x:Name="C2" Content="" Grid.Column="3" Grid.Row="3" Background="White"/>
-        <Button x:Name="C3" Content="" Grid.Column="4" Grid.Row="3" Background="White"/>
-        <Button x:Name="C4" Content="" Grid.Column="5" Grid.Row="3" Background="White"/>
-        <Button x:Name="C5" Content="" Grid.Column="6" Grid.Row="3" Background="White"/>
-        <Button x:Name="C6" Content="" Grid.Column="7" Grid.Row="3" Background="White"/>
-        <Button x:Name="D1" Content="" Grid.Column="2" Grid.Row="4" Background="White"/>
-        <Button x:Name="D2" Content="" Grid.Column="3" Grid.Row="4" Background="White"/>
-        <Button x:Name="D3" Content="" Grid.Column="4" Grid.Row="4" Background="White"/>
-        <Button x:Name="D4" Content="" Grid.Column="5" Grid.Row="4" Background="White"/>
-        <Button x:Name="D5" Content="" Grid.Column="6" Grid.Row="4" Background="White"/>
-        <Button x:Name="D6" Content="" Grid.Column="7" Grid.Row="4" Background="White"/>
-        <Button x:Name="E1" Content="" Grid.Column="2" Grid.Row="5" Background="White"/>
-        <Button x:Name="E2" Content="" Grid.Column="3" Grid.Row="5" Background="White"/>
-        <Button x:Name="E3" Content="" Grid.Column="4" Grid.Row="5" Background="White"/>
-        <Button x:Name="E4" Content="" Grid.Column="5" Grid.Row="5" Background="White"/>
-        <Button x:Name="E5" Content="" Grid.Column="6" Grid.Row="5" Background="White"/>
-        <Button x:Name="E6" Content="" Grid.Column="7" Grid.Row="5" Background="White"/>
-        <Button x:Name="F1" Content="" Grid.Column="2" Grid.Row="6" Background="White"/>
-        <Button x:Name="F2" Content="" Grid.Column="3" Grid.Row="6" Background="White"/>
-        <Button x:Name="F3" Content="" Grid.Column="4" Grid.Row="6" Background="White"/>
-        <Button x:Name="F4" Content="" Grid.Column="5" Grid.Row="6" Background="White"/>
-        <Button x:Name="F5" Content="" Grid.Column="6" Grid.Row="6" Background="White"/>
-        <Button x:Name="F6" Content="" Grid.Column="7" Grid.Row="6" Background="White"/>
+        <Button x:Name="A1" Content="" Grid.Column="2" Background="White" Grid.Row="1" Click="placeMark"/>
+        <Button x:Name="A2" Content="" Grid.Column="3" Grid.Row="1" Background="White" Click="placeMark"/>
+        <Button x:Name="A3" Content="" Grid.Column="4" Grid.Row="1" Background="White" Click="placeMark"/>
+        <Button x:Name="A4" Content="" Grid.Column="5" Grid.Row="1" Background="White" Click="placeMark"/>
+        <Button x:Name="A5" Content="" Grid.Column="6" Grid.Row="1" Background="White" Click="placeMark"/>
+        <Button x:Name="A6" Content="" Grid.Column="7" Grid.Row="1" Background="White" Click="placeMark"/>
+        <Button x:Name="B1" Content="" Grid.Column="2" Grid.Row="2" Background="White" Click="placeMark"/>
+        <Button x:Name="B2" Content="" Grid.Column="3" Grid.Row="2" Background="White" Click="placeMark"/>
+        <Button x:Name="B3" Content="" Grid.Column="4" Grid.Row="2" Background="White" Click="placeMark"/>
+        <Button x:Name="B4" Content="" Grid.Column="5" Grid.Row="2" Background="White" Click="placeMark"/>
+        <Button x:Name="B5" Content="" Grid.Column="6" Grid.Row="2" Background="White" Click="placeMark"/>
+        <Button x:Name="B6" Content="" Grid.Column="7" Grid.Row="2" Background="White" Click="placeMark"/>
+        <Button x:Name="C1" Content="" Grid.Column="2" Grid.Row="3" Background="White" Click="placeMark"/>
+        <Button x:Name="C2" Content="" Grid.Column="3" Grid.Row="3" Background="White" Click="placeMark"/>
+        <Button x:Name="C3" Content="" Grid.Column="4" Grid.Row="3" Background="White" Click="placeMark"/>
+        <Button x:Name="C4" Content="" Grid.Column="5" Grid.Row="3" Background="White" Click="placeMark"/>
+        <Button x:Name="C5" Content="" Grid.Column="6" Grid.Row="3" Background="White" Click="placeMark"/>
+        <Button x:Name="C6" Content="" Grid.Column="7" Grid.Row="3" Background="White" Click="placeMark"/>
+        <Button x:Name="D1" Content="" Grid.Column="2" Grid.Row="4" Background="White" Click="placeMark"/>
+        <Button x:Name="D2" Content="" Grid.Column="3" Grid.Row="4" Background="White" Click="placeMark"/>
+        <Button x:Name="D3" Content="" Grid.Column="4" Grid.Row="4" Background="White" Click="placeMark"/>
+        <Button x:Name="D4" Content="" Grid.Column="5" Grid.Row="4" Background="White" Click="placeMark"/>
+        <Button x:Name="D5" Content="" Grid.Column="6" Grid.Row="4" Background="White" Click="placeMark"/>
+        <Button x:Name="D6" Content="" Grid.Column="7" Grid.Row="4" Background="White" Click="placeMark"/>
+        <Button x:Name="E1" Content="" Grid.Column="2" Grid.Row="5" Background="White" Click="placeMark"/>
+        <Button x:Name="E2" Content="" Grid.Column="3" Grid.Row="5" Background="White" Click="placeMark"/>
+        <Button x:Name="E3" Content="" Grid.Column="4" Grid.Row="5" Background="White" Click="placeMark"/>
+        <Button x:Name="E4" Content="" Grid.Column="5" Grid.Row="5" Background="White" Click="placeMark"/>
+        <Button x:Name="E5" Content="" Grid.Column="6" Grid.Row="5" Background="White" Click="placeMark"/>
+        <Button x:Name="E6" Content="" Grid.Column="7" Grid.Row="5" Background="White" Click="placeMark"/>
+        <Button x:Name="F1" Content="" Grid.Column="2" Grid.Row="6" Background="White" Click="placeMark"/>
+        <Button x:Name="F2" Content="" Grid.Column="3" Grid.Row="6" Background="White" Click="placeMark"/>
+        <Button x:Name="F3" Content="" Grid.Column="4" Grid.Row="6" Background="White" Click="placeMark"/>
+        <Button x:Name="F4" Content="" Grid.Column="5" Grid.Row="6" Background="White" Click="placeMark"/>
+        <Button x:Name="F5" Content="" Grid.Column="6" Grid.Row="6" Background="White" Click="placeMark"/>
+        <Button x:Name="F6" Content="" Grid.Column="7" Grid.Row="6" Background="White" Click="placeMark"/>
         <Label x:Name="player1Label" Content="Player 1:" Grid.Row="1" Foreground="White" FontSize="68" HorizontalAlignment="Right"/>
         <Label x:Name="player2Label" Content="Player 2:" Foreground="White" FontSize="68" Grid.Column="9" Grid.Row="1" HorizontalAlignment="Left"/>
-        <Label x:Name="score1Label" Content="Score" Grid.Row="4" Foreground="White" FontSize="68" HorizontalAlignment="Right"/>
+        <Label x:Name="player1Mark" Content="X" Grid.Row="2" Foreground="DarkGray"  FontSize="68" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" FontWeight="Bold"/>
+        <Label x:Name="player2Mark" Content="O" Foreground="LightGray" FontSize="68" Grid.Column="9" Grid.Row="2" HorizontalAlignment="Left" Background="{x:Null}" VerticalAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="score1Label" Content="Score" Grid.Row="4" Foreground="White" FontSize="68" HorizontalAlignment="Right" Height="99" VerticalAlignment="Top"/>
         <Label x:Name="score2Label" Content="Score" Foreground="White" FontSize="68" Grid.Column="9" Grid.Row="4" HorizontalAlignment="Left"/>
         <Label x:Name="gameModeLabel" Content="Game Mode" Grid.Column="1" Grid.ColumnSpan="8" Foreground="White" FontSize="68" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label x:Name="exitButton" Content="Exit" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" MouseLeftButtonDown="exitGameMessage"/>
@@ -121,10 +123,11 @@
             </StackPanel>
             <Label x:Name="noButton" Content="No" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="backToGame"/>
         </Grid>
-        <Grid x:Name="displayPlayerStats" Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="10" Background="#FF211F1F" d:IsHidden="True" Visibility="Hidden">
+        <Grid x:Name="displayPlayerStats" Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="10" Background="#FF211F1F" Visibility="Hidden">
             <Grid.RowDefinitions>
-                <RowDefinition Height="150*"/>
-                <RowDefinition Height="50*"/>
+                <RowDefinition Height="82*"/>
+                <RowDefinition Height="414*"/>
+                <RowDefinition Height="101*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100*"/>
@@ -132,19 +135,20 @@
                 <ColumnDefinition Width="615*"/>
                 <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel x:Name="player1StatsPanel" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label x:Name="gameOverLabel" Content="Game Over" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Foreground="White" FontSize="60"/>
+            <StackPanel x:Name="player1StatsPanel" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
                 <Label x:Name="player1StatsLabel" Content="player 1" Foreground="White" HorizontalAlignment="Center" FontSize="68"/>
                 <Label x:Name="player1StatsWinsLabel" Content="Wins:" Foreground="White" FontSize="68"/>
                 <Label x:Name="player1StatsLosesLabel" Content="Loses:" Foreground="White" FontSize="68"/>
                 <Label x:Name="player1StatsHighestScoreLabel" Content="Highest Score:" Foreground="White" FontSize="68"/>
             </StackPanel>
-            <StackPanel x:Name="player2StatsPanel" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel x:Name="player2StatsPanel" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
                 <Label x:Name="player2StatsLabel" Content="player 2" HorizontalAlignment="Center" FontSize="68" Foreground="White"/>
                 <Label x:Name="player2StatsWinsLabel" Content="Wins:" FontSize="68" Foreground="White"/>
                 <Label x:Name="player2StatsLosesLabel" Content="Loses:" FontSize="68" Foreground="White"/>
                 <Label x:Name="player2StatsHighestScoreLabel" Content="Highest Score:" FontSize="68" Foreground="White"/>
             </StackPanel>
-            <Label x:Name="backToMainMenuButton" Content="Back To Main Menu" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" MouseLeftButtonDown="backToMainMenu"/>
+            <Label x:Name="backToMainMenuButton" Content="Back To Main Menu" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="4" Grid.Row="2" VerticalAlignment="Center" MouseLeftButtonDown="backToMainMenu" Height="102" Margin="100,0,100,-1"/>
         </Grid>
     </Grid>
 </Window>

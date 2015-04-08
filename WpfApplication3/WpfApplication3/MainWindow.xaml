@@ -57,7 +57,7 @@
             <Label x:Name="enterButton_Copy"  Content="Enter" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Margin="651.5,0" MouseLeftButtonDown="enterButtonRegistration"/>
             <Label x:Name="backToMenuLabel_Copy"  Content="Back" FontSize="36" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backButtonReg" Margin="535,0"/>
         </StackPanel>
-        <Grid x:Name="viewScoresPanel" d:IsHidden="True">
+        <Grid x:Name="viewScoresPanel">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="350*"/>
                 <ColumnDefinition Width="350*"/>
@@ -81,6 +81,7 @@
             <Label x:Name="highestScoreLabelViewScores"  Content="Highest" Foreground="White" FontSize="68" Grid.Column="3" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Grid.Row="1"/>
             <Label x:Name="backToMainMenuButtonVHS"  Content="Back To Main Menu" FontSize="36" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu" Grid.Row="8" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center"/>
             <Label x:Name="viewScoreTitleLabel" Content="Top Difficulty Scores" Foreground="White" FontSize="68" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Label x:Name="changePlayModeScoresButton"  Content="Other Difficulty" FontSize="36" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="changeDifficultyScores" Grid.Column="3"/>
             <Label x:Name="changeDifficultyScoresButton2"  Content="Other Difficulty" FontSize="36" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="changeDifficultyScores" Grid.Row="8" Grid.Column="3"/>
             <Label x:Name="changeDifficultyScoresButton"  Content="Other Difficulty" FontSize="36" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="changeDifficultyScores" Grid.Row="8"/>
             <Label x:Name="firstPlaceNameLabel"  Content="1. Username" Grid.Row="2" Foreground="White" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -108,7 +109,7 @@
             <Label x:Name="fifthPlaceHighestLabel"  Content="5. Highest" Grid.Row="6" Foreground="White" FontSize="48" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="sixthPlaceHighestLabel"  Content="6. Highest" Grid.Row="7" Foreground="White" FontSize="48" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
-        <StackPanel x:Name="difficultyPanel" VerticalAlignment="Center">
+        <StackPanel x:Name="difficultyPanel" VerticalAlignment="Center" d:IsHidden="True">
             <Label x:Name="easyButton"  Content="Easy" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="68" Foreground="White"
         		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="difficultyButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="mediumButton"  Content="Medium" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="68" Foreground="White"

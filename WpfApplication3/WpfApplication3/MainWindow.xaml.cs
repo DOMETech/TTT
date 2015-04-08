@@ -320,7 +320,10 @@ namespace WpfApplication3
                         //Create user object for player 1
                         player1 = new User(usernameBoxMultiPlayer1.Text);
 
-                        displayMultiplayer2();
+                        multiPlayer1Panel.Visibility = Visibility.Hidden;
+                        multiPlayer1ScreenActive = false;
+                        multiPlayer2Panel.Visibility = Visibility.Visible;
+                        multiPlayer2ScreenActive = true;
 
 
                     }
@@ -362,7 +365,9 @@ namespace WpfApplication3
 
                         //Launch the difficulty panel and set singlePlayerGame false
                         singlePlayerGame = false;
-                        displayDifficulty();
+                        
+                        //Create Game
+                        createGame(singlePlayerGame, 4);
 
 
                     }
@@ -397,6 +402,7 @@ namespace WpfApplication3
             //Create an empty user object since it is a guest
             player1 = new User();
 
+            //Display multi screen 2
             displayMultiplayer2();
 
         }
@@ -410,8 +416,9 @@ namespace WpfApplication3
 
             //Launch the difficulty panel and set singlePlayerGame false
             singlePlayerGame = false;
-            displayDifficulty();
-
+            
+            //create game
+            createGame(singlePlayerGame, 1);
 
         }              
 
@@ -466,7 +473,7 @@ namespace WpfApplication3
         {
             Label difficultyButton = sender as Label;
 
-            if (difficultyButton.Content.ToString() == "Easy Scores")
+            if (difficultyButton.Content.ToString() == "Easy Scores" || difficultyButton.Content.ToString() == "Singleplayer Scores")
             {
                 setScoresLabels("Easy");
             }
@@ -478,6 +485,11 @@ namespace WpfApplication3
             {
                 setScoresLabels("Hard");
             }
+            else if (difficultyButton.Content.ToString() == "Multiplayer Scores")
+            {
+                setScoresLabels("Multiplayer");
+            }
+            
         }
         
 
@@ -490,22 +502,23 @@ namespace WpfApplication3
          * 
          * 
          * */
-         
-         //Displaye difficulty panel
-         private void displayDifficulty(){
-             difficultyPanel.Visibility = Visibility.Visible;
+
+
+        //Displaye difficulty panel
+        private void displayDifficulty()
+        {
+            difficultyPanel.Visibility = Visibility.Visible;
             singlePlayerPanel.Visibility = Visibility.Hidden;
-         }
-         
-         //Displaye player 2 multiplayer screen
-         private void displayMultiplayer2(){
-             
+        }
+
+        //Displaye player 2 multiplayer screen
+        private void displayMultiplayer2()
+        {
             multiPlayer1Panel.Visibility = Visibility.Hidden;
             multiPlayer1ScreenActive = false;
             multiPlayer2Panel.Visibility = Visibility.Visible;
             multiPlayer2ScreenActive = true;
-             
-         }
+        }
                
         //Creates the game difficulty 1=Easy, 2=Medium, 3=Hard
         private void createGame(bool playingMode, int difficulty)
@@ -520,7 +533,7 @@ namespace WpfApplication3
             }
             else//if multiplayer
             {
-                GameWindow game = new GameWindow(player1, player2, difficulty);
+                GameWindow game = new GameWindow(player1, player2);
 
                 game.Show();
                 this.Close();
@@ -621,16 +634,30 @@ namespace WpfApplication3
             {                
                 changeDifficultyScoresButton.Content = "Medium Scores";
                 changeDifficultyScoresButton2.Content = "Hard Scores";
+
+                changePlayModeScoresButton.Content = "Multiplayer Scores";
+
+                changeDifficultyScoresButton.Visibility = changeDifficultyScoresButton2.Visibility = Visibility.Visible;
             }
             else if (difficultySelected == "Medium")
             {                
                 changeDifficultyScoresButton.Content = "Easy Scores";
                 changeDifficultyScoresButton2.Content = "Hard Scores";
+
+                changePlayModeScoresButton.Content = "Multiplayer Scores";
             }
             else if (difficultySelected == "Hard")
             {
                 changeDifficultyScoresButton.Content = "Easy Scores";
                 changeDifficultyScoresButton2.Content = "Medium Scores";
+
+                changePlayModeScoresButton.Content = "Multiplayer Scores";
+            }
+            else if (difficultySelected == "Multiplayer")
+            {
+                changeDifficultyScoresButton.Visibility = changeDifficultyScoresButton2.Visibility = Visibility.Hidden;
+
+                changePlayModeScoresButton.Content = "Singleplayer Scores";
             }
 
         }

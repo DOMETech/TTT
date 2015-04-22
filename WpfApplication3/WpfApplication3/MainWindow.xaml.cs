@@ -48,6 +48,7 @@ namespace WpfApplication3
             multiPlayer2ScreenActive = false;
             viewScoresPanel.Visibility = Visibility.Hidden;
             difficultyPanel.Visibility = Visibility.Hidden;
+            gameRuelsPanel.Visibility = Visibility.Hidden;
 
             
             sound = false;//erase this if sound wanted in the program and uncomment the 2 lines bellow
@@ -74,6 +75,7 @@ namespace WpfApplication3
                 multiPlayer2ScreenActive = false;
                 viewScoresPanel.Visibility = Visibility.Hidden;
                 difficultyPanel.Visibility = Visibility.Hidden;
+                gameRuelsPanel.Visibility = Visibility.Hidden;
 
 
                 sound = false;//erase this if sound wanted in the program and uncomment the 2 lines bellow
@@ -166,6 +168,14 @@ namespace WpfApplication3
 
         }
 
+        //Enter view game rules
+        private void viewGameRules(object sender, MouseButtonEventArgs e)
+        {
+            mainMenuPanel.Visibility = Visibility.Hidden;
+            mainMenuScreenActive = false;
+
+            gameRuelsPanel.Visibility = Visibility.Visible;
+        }
        
         //Multiplayer button action
         private void multiplayerButton(object sender, MouseButtonEventArgs e)
@@ -185,6 +195,7 @@ namespace WpfApplication3
             multiPlayer2Panel.Visibility = Visibility.Hidden;
             difficultyPanel.Visibility = Visibility.Hidden;
             viewScoresPanel.Visibility = Visibility.Hidden;
+            gameRuelsPanel.Visibility = Visibility.Hidden;
 
             //Display Main Menu
             mainMenuPanel.Visibility = Visibility.Visible;            
@@ -879,10 +890,6 @@ namespace WpfApplication3
             conn.Close();
             
         }
-
-
-       
-        
 
     }
 }

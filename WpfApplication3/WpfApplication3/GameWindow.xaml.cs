@@ -2119,83 +2119,6 @@ namespace WpfApplication3
             }
 
             //FOURTH PRIORITY:
-            //Check to place to adjacent
-            if (!found)
-            {
-                location = 0;
-
-                for (int i = 0; i < buttons.Length; i++)
-                {
-                    if (buttons[i].Content == "")
-                    {
-                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                        buttons[i].Content = "O";
-
-                        for (int k = i + 1; k < buttons.Length; k++)
-                        {
-                            buttons[k].Foreground = new SolidColorBrush(Colors.White);
-                            buttons[k].Content = "O";
-
-                            for (int j = k + 1; j < buttons.Length; j++)
-                            {
-                                if (buttons[j].Content == "")
-                                {
-                                    buttons[j].Foreground = new SolidColorBrush(Colors.White);
-                                    buttons[j].Content = "O";
-
-                                    if (checkHorizontal(true))
-                                    {
-
-                                        found = true;
-                                    }
-                                    else if (checkVerticalScore(true))
-                                    {
-
-                                        found = true;
-                                    }
-                                    else if (checkDiagonal(true))
-                                    {
-
-                                        found = true;
-                                    }
-                                    else
-                                    {
-                                        buttons[k].Content = "";
-                                        buttons[j].Content = "";
-                                    }
-
-
-                                    if (found)
-                                    {
-                                        buttons[k].Content = "";
-                                        buttons[j].Content = "";
-                                        location = i;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (found)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                buttons[k].Content = "";
-                            }
-                        }
-                        if (found)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            buttons[i].Content = "";
-                        }
-                    }
-                }
-            }
-            
-            //FIFTH PRIORITY
             //Block Users if it has two adjacents
             if (!found)
             {
@@ -2256,8 +2179,267 @@ namespace WpfApplication3
                     }
                 }
             }
+                        
+            //FIFTH PRIORITY
+            //Check to place to adjacent
+            if (!found)
+            {
+                location = 0;
 
-            //SIXTH PRIORITY
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    if (buttons[i].Content == "")
+                    {
+                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
+                        buttons[i].Content = "O";
+
+                        for (int k = i + 1; k < buttons.Length; k++)
+                        {
+                            if (buttons[k].Content == "")
+                            {
+                                buttons[k].Foreground = new SolidColorBrush(Colors.White);
+                                buttons[k].Content = "O";
+
+                                for (int j = k + 1; j < buttons.Length; j++)
+                                {
+                                    if (buttons[j].Content == "")
+                                    {
+                                        buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                        buttons[j].Content = "O";
+
+                                        if (checkHorizontal(true))
+                                        {
+
+                                            found = true;
+                                        }
+                                        else if (checkVerticalScore(true))
+                                        {
+
+                                            found = true;
+                                        }
+                                        else if (checkDiagonal(true))
+                                        {
+
+                                            found = true;
+                                        }
+                                        else
+                                        {
+                                            buttons[k].Content = "";
+                                            buttons[j].Content = "";
+                                        }
+
+
+                                        if (found)
+                                        {
+                                            buttons[k].Content = "";
+                                            buttons[j].Content = "";
+                                            location = i;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            if (found)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                buttons[k].Content = "";
+                            }
+                        }
+                        if (found)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            buttons[i].Content = "";
+                        }
+                    }
+                }
+            }
+
+            //SXTH PRIORITY
+            //Look for empty scoring possibilities
+            if (!found)
+            {
+                location = 0;
+
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    if (buttons[i].Content == "")
+                    {
+                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
+                        buttons[i].Content = "O";
+
+                        for (int k = i + 1; k < buttons.Length; k++)
+                        {
+                            if (buttons[k].Content == "")
+                            {
+                                buttons[k].Foreground = new SolidColorBrush(Colors.White);
+                                buttons[k].Content = "O";
+
+                                for (int l = k + 1; l < buttons.Length; l++)
+                                {
+                                    if (buttons[l].Content == "")
+                                    {
+                                        buttons[l].Foreground = new SolidColorBrush(Colors.White);
+                                        buttons[l].Content = "O";
+
+                                        for (int j = l + 1; j < buttons.Length; j++)
+                                        {
+                                            if (buttons[j].Content == "")
+                                            {
+                                                buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                                buttons[j].Content = "O";
+
+                                                if (checkHorizontal(true))
+                                                {
+
+                                                    found = true;
+                                                }
+                                                else if (checkVerticalScore(true))
+                                                {
+
+                                                    found = true;
+                                                }
+                                                else if (checkDiagonal(true))
+                                                {
+
+                                                    found = true;
+                                                }
+                                                else
+                                                {
+                                                    buttons[k].Content = "";
+                                                    buttons[j].Content = "";
+                                                    buttons[l].Content = "";
+                                                }
+
+
+                                                if (found)
+                                                {
+                                                    buttons[k].Content = "";
+                                                    buttons[j].Content = "";
+                                                    buttons[l].Content = "";
+                                                    location = i;
+                                                    break;
+                                                }
+                                            }
+                                        }                                        
+                                    }
+                                    if (found)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        buttons[l].Content = "";
+                                    }
+                                }                                
+                            }
+                            if (found)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                buttons[k].Content = "";
+                            }
+                        }
+                        if (found)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            buttons[i].Content = "";
+                        }
+                    }
+                }
+            }
+
+            //SEVENTH PRIORITY
+            //Block one where scoring possibility
+            if (!found)
+            {
+                location = 0;
+
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    if (buttons[i].Content == "")
+                    {
+                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
+                        buttons[i].Content = "X";
+
+                        for (int k = i + 1; k < buttons.Length; k++)
+                        {
+                            if (buttons[k].Content == "")
+                            {
+                                buttons[k].Foreground = new SolidColorBrush(Colors.White);
+                                buttons[k].Content = "X";
+
+                                for (int j = k + 1; j < buttons.Length; j++)
+                                {
+                                    if (buttons[j].Content == "")
+                                    {
+                                        buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                        buttons[j].Content = "X";
+
+                                        if (checkHorizontal(true))
+                                        {
+
+                                            found = true;
+                                        }
+                                        else if (checkVerticalScore(true))
+                                        {
+
+                                            found = true;
+                                        }
+                                        else if (checkDiagonal(true))
+                                        {
+
+                                            found = true;
+                                        }
+                                        else
+                                        {
+                                            buttons[k].Content = "";
+                                            buttons[j].Content = "";
+                                        }
+
+
+                                        if (found)
+                                        {
+                                            buttons[k].Content = "";
+                                            buttons[j].Content = "";
+                                            location = i;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            if (found)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                buttons[k].Content = "";
+                            }
+                        }
+                        if (found)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            buttons[i].Content = "";
+                        }
+                    }
+                }
+            }
+
+            //EIGHT PRIORITY
             //Set in a corner
             if (!found)
             {
@@ -2276,7 +2458,7 @@ namespace WpfApplication3
 
             }
 
-            //LAST PRIOTRITY:
+            //NINTH PRIOTRITY:
             //Random position
             //If nothing else works set it in a random spot
             if (!found)

@@ -21,7 +21,7 @@
             <Label x:Name="multiPlayerButton"  Content="Multi Player" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Foreground="White"
         		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="multiplayerButton"/>
             <Label x:Name="gameRulesButton"  Content="Game Rules" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Foreground="White"
-            	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel"/>
+            	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="viewGameRules"/>
             <Label x:Name="registerButton"  Content="Register" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Foreground="White"
         		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="registration"/>
             <Label x:Name="viewScoresButton"  Content="View Scores" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Foreground="White"
@@ -75,7 +75,7 @@
                 <RowDefinition Height="100*"/>
                 <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
-            <Label x:Name="viewScoreTitleLabel" Content="Top Difficulty Scores" Foreground="White" FontSize="28" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="114.8,18,114.6,18.8" />
+            <Label x:Name="viewScoreTitleLabel" Content="Top Difficulty Scores" Foreground="White" FontSize="32" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="114.8,18,114.6,18.8" />
             <Label x:Name="changePlayModeScoresButton"  Content="Other Difficulty" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="changeDifficultyScores" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="changeDifficultyScoresButton2"  Content="Other Difficulty" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="changeDifficultyScores" Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="changeDifficultyScoresButton"  Content="Other Difficulty" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="changeDifficultyScores" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -125,7 +125,7 @@
             	MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="difficultyButtonAction" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="backToMenuButton2_Copy2"  Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu"/>
         </StackPanel>
-        <Grid x:Name="multiplayerPanel">
+        <Grid x:Name="multiplayerPanel" d:IsHidden="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="700*"/>
                 <ColumnDefinition Width="700*"/>
@@ -154,6 +154,11 @@
                 <Label x:Name="backToMenuButton2_Copy" Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu"/>
             </StackPanel>
         </Grid>
+        <StackPanel x:Name="gameRuelsPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label x:Name="gameRulesTitle" Foreground="White" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Game Rule" />
+            <TextBox x:Name="rulesDescription" IsReadOnly="True" Cursor="Arrow" Focusable="False" FocusVisualStyle="{x:Null}" TextAlignment="Center" TextWrapping="Wrap" Text="The player with the highest score at the end of the game wins. Players score points for each 4-stones-in-a-row. If you have more than 4 stones in a row, they may be counted as multiple points. For example, 5-in-a-row gives you two points. The game ends  when there are no more available spaces to select. You have the option of playing against the computer with varying difficulties or play against another person." Height="354" Width="630" Background="Black" Foreground="White" BorderBrush="{x:Null}" FontSize="28" IsReadOnlyCaretVisible="True"/>
+            <Label x:Name="backToMenuButton_Copy"  Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu"/>
+        </StackPanel>
 
     </Grid>
 </Window>

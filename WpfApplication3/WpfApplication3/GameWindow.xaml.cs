@@ -33,6 +33,8 @@ namespace WpfApplication3
 
         private int moveCounter;        //The move counter when set to 36 the game will end
 
+        //private int testCounter; this is for testing
+
         //Set all the options in the board
 
         //list of buttons
@@ -135,6 +137,8 @@ namespace WpfApplication3
 
             //Set properties
             setProperties();
+
+            //testCounter = 0; this is for testing
         }
 
         //Multiplayer game
@@ -168,6 +172,8 @@ namespace WpfApplication3
 
             //Set properties
             setProperties();
+
+            //testCounter = 0; this is for testing
         }
 
         //Method to set properties for the game
@@ -490,9 +496,10 @@ namespace WpfApplication3
             endGame();
         }
 
-        //End game method
+        //End game method when game is not over and exited in the middle of the game
         private void endGame()
         {
+           
             //If it is press when player 1 turn is going on
             if (playerOneTurn)
             {
@@ -506,7 +513,8 @@ namespace WpfApplication3
                         addWinningPoint(player2);
 
                         //set stats for player 2
-                        setStats(player2, player2StatsLabel, player2StatsWinsLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
+                        setStats(player2, player2StatsLabel, player2StatsScoreLabel, player2StatsWinsLabel, player2StatsTiesLabel,player2StatsLosesLabel, player2StatsHighestScoreLabel);
+                        
                         guestPlayerCpuStats();
                         setWinner();
 
@@ -540,8 +548,8 @@ namespace WpfApplication3
                         addWinningPoint(player2);
 
                         //set labels
-                        setStats(player1, player1StatsLabel, player1StatsWinsLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
-                        setStats(player2, player2StatsLabel, player2StatsWinsLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
+                        setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                        setStats(player2, player2StatsLabel, player2StatsScoreLabel, player2StatsWinsLabel, player2StatsTiesLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
                         setWinner();
 
                         //display panel and stats
@@ -556,7 +564,7 @@ namespace WpfApplication3
                         addLosingPoint(player1);
 
                         //set labels
-                        setStats(player1, player1StatsLabel, player1StatsWinsLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                        setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
                         guestPlayerCpuStats();
                         setWinner();
 
@@ -580,7 +588,7 @@ namespace WpfApplication3
                         addLosingPoint(player1);
 
                         //sets the stats labels 
-                        setStats(player1, player1StatsLabel, player1StatsWinsLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                        setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
                         guestPlayerCpuStats();
                         setWinner();
 
@@ -618,7 +626,7 @@ namespace WpfApplication3
                         addWinningPoint(player1);
 
                         //set labels
-                        setStats(player1, player1StatsLabel, player1StatsWinsLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                        setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
                         guestPlayerCpuStats();
                         setWinner();
 
@@ -640,8 +648,8 @@ namespace WpfApplication3
                         addWinningPoint(player1);
 
                         //set stats label
-                        setStats(player1, player1StatsLabel, player1StatsWinsLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
-                        setStats(player2, player2StatsLabel, player2StatsWinsLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
+                        setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                        setStats(player2, player2StatsLabel, player2StatsScoreLabel, player2StatsWinsLabel, player2StatsTiesLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
                         setWinner();
 
                         //display panel and stats
@@ -656,7 +664,7 @@ namespace WpfApplication3
                         addLosingPoint(player2);
 
                         //set stats
-                        setStats(player2, player2StatsLabel, player2StatsWinsLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
+                        setStats(player2, player2StatsLabel, player2StatsScoreLabel, player2StatsWinsLabel, player2StatsTiesLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
                         guestPlayerCpuStats();
                         setWinner();
 
@@ -667,6 +675,133 @@ namespace WpfApplication3
                 }
 
             }
+        }
+
+        //End of game when all moves are done and the board is full GameOver
+        private void gameOver()
+        {
+            
+            //if player 1 won
+            if (player1.getScore() > player2.getScore())
+            {
+                
+                //if player 1 is not a guest
+                if (!player1.isGuest())
+                {
+                    //add winning point to player 1
+                    addWinningPoint(player1);
+
+                    //set stats for player 1
+                    setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                                        
+                }
+                //else if player 1 is a guest
+                else
+                {
+                    //set guest player stats
+                    guestPlayerCpuStats();
+                }
+
+                //if player 2 is not a guest and is not CPU
+                if (!player2.isGuest() && player2.getUsername() != "CPU")
+                {
+                    //add losing point to player 2
+                    addLosingPoint(player2);
+
+                    //set the stats
+                    setStats(player2, player2StatsLabel, player2StatsScoreLabel, player2StatsWinsLabel, player2StatsTiesLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
+
+                }
+                //if player 2 is a guest or cpu
+                else
+                {
+                    //set guest player or cpu stats
+                    guestPlayerCpuStats();
+                }
+            }
+            //if player 2 won
+            else if (player2.getScore() > player1.getScore())
+            {
+                //if player 1 is not a guest
+                if (!player1.isGuest())
+                {
+                    //add losing point to player 1
+                    addLosingPoint(player1);
+
+                    //set player 1 stats
+                    setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                    
+
+                }
+                //else if player 1 is a guest
+                else
+                {
+                    //set guest player or cpu stats
+                    guestPlayerCpuStats();
+                }
+
+                //if player 2 is not a guest and is not CPU
+                if (!player2.isGuest() && player2.getUsername() != "CPU")
+                {
+                    //add winning plint to player 2
+                    addWinningPoint(player2);
+
+                    //set the stats
+                    setStats(player2, player2StatsLabel, player2StatsScoreLabel, player2StatsWinsLabel, player2StatsTiesLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
+
+                }
+                //if player 2 is a guest or cpu
+                else
+                {
+                    //set guest player or cpu stats
+                    guestPlayerCpuStats();
+                }
+            }
+            //if it was a tie game
+            else
+            {
+                //if player 1 is not a guest
+                if (!player1.isGuest())
+                {
+                    //add tie point to player1
+                    addTiePoint(player1);
+
+                    //set player 1 stats
+                    setStats(player1, player1StatsLabel, player1StatsScoreLabel, player1StatsWinsLabel, player1StatsTiesLabel, player1StatsLosesLabel, player1StatsHighestScoreLabel);
+                    
+                }
+                //else if player 1 is a guest
+                else
+                {
+                    //set guest player or cpu stats
+                    guestPlayerCpuStats();
+                }
+
+                //if player 2 is not a guest and is not CPU
+                if (!player2.isGuest() && player2.getUsername() != "CPU")
+                {
+                    //add tie ppint to player 2
+                    addTiePoint(player2);
+
+                    //set the stats
+                    setStats(player2, player2StatsLabel, player2StatsScoreLabel, player2StatsWinsLabel, player2StatsTiesLabel, player2StatsLosesLabel, player2StatsHighestScoreLabel);
+
+                }
+                //if player 2 is a guest or cpu
+                else
+                {
+                    //set guest player or cpu stats
+                    guestPlayerCpuStats();
+                }
+            }
+
+            //set winner();
+            setWinner();
+
+            //display everything
+            displayPlayerStats.Visibility = Visibility.Visible;
+
+
         }
 
         //Set winner in stats label
@@ -681,7 +816,7 @@ namespace WpfApplication3
                 }
                 else if (player2.getScore() > player1.getScore())
                 {
-                    player1StatsLabel.Content += " Losess!";
+                    player1StatsLabel.Content += " Loses!";
                     player2StatsLabel.Content += " Wins!";
                 }
                 else if (player1.getScore() == player2.getScore())
@@ -694,7 +829,7 @@ namespace WpfApplication3
             {
                 if (playerOneTurn)
                 {
-                    player1StatsLabel.Content += " Losess!";
+                    player1StatsLabel.Content += " Loses!";
                     player2StatsLabel.Content += " Wins!";
                 }
                 else
@@ -706,7 +841,7 @@ namespace WpfApplication3
                     }
                     else
                     {
-                        player1StatsLabel.Content += " Losess!";
+                        player1StatsLabel.Content += " Loses!";
                         player2StatsLabel.Content += " Wins!";
                     }
                 }
@@ -718,30 +853,26 @@ namespace WpfApplication3
         private void guestPlayerCpuStats()
         {
             if (player1.isGuest())
+            {
                 player1StatsLabel.Content = player1.getUsername();
-
-
-            if (player2.isGuest() || player2.getUsername() == "CPU")
-                player2StatsLabel.Content = player2.getUsername();
-
-            if (player1.isGuest())
-                player1StatsWinsLabel.Content = "Score: " + player1.getScore();
-
-            if (player2.isGuest() || player2.getUsername() == "CPU")
-                player2StatsWinsLabel.Content = "Score: " + player2.getScore();
-
-            if (player1.isGuest())
+                player1StatsScoreLabel.Content = "Score: " + player1.getScore();
+                player1StatsWinsLabel.Visibility = Visibility.Hidden;
                 player1StatsLosesLabel.Visibility = Visibility.Hidden;
-
-            if (player2.isGuest() || player2.getUsername() == "CPU")
-                player2StatsLosesLabel.Visibility = Visibility.Hidden;
-
-            if (player1.isGuest())
+                player1StatsTiesLabel.Visibility = Visibility.Hidden;
                 player1StatsHighestScoreLabel.Visibility = Visibility.Hidden;
 
-            if (player2.isGuest() || player2.getUsername() == "CPU")
-                player2StatsHighestScoreLabel.Visibility = Visibility.Hidden;
 
+            }
+
+            if (player2.isGuest() || player2.getUsername() == "CPU")
+            {
+                player2StatsLabel.Content = player2.getUsername();
+                player2StatsScoreLabel.Content = "Score: " + player2.getScore();
+                player2StatsWinsLabel.Visibility = Visibility.Hidden;
+                player2StatsTiesLabel.Visibility = Visibility.Hidden;
+                player2StatsLosesLabel.Visibility = Visibility.Hidden;
+                player2StatsHighestScoreLabel.Visibility = Visibility.Hidden;
+            }
         }
 
         //Function to add a winning point to the database
@@ -797,8 +928,8 @@ namespace WpfApplication3
                 conn.Open();
 
                 //insert the user into table
-                sql = "INSERT INTO " + difficultyStr + "Score (username, wins, loses, highestScore) VALUES('" +
-                    player.getUsername() + "', 1, 0, " + player.getScore() + ")";
+                sql = "INSERT INTO " + difficultyStr + "Score (username, wins, loses, highestScore, ties) VALUES('" +
+                    player.getUsername() + "', 1, 0, " + player.getScore() + ", 0)";
 
                 //create command
                 cmd = new SQLiteCommand(sql, conn);
@@ -810,6 +941,72 @@ namespace WpfApplication3
             }
 
 
+        }
+
+        //Function to add tie point to the database
+        private void addTiePoint(User player)
+        {
+            //Connect to the database
+            SQLiteConnection conn = new SQLiteConnection(sqlconnection);
+
+            //open connection
+            conn.Open();
+
+            //sql query to be perform
+            string sql = "SELECT * FROM " + difficultyStr + "Score WHERE username='" + player.getUsername() + "'";
+
+            //create a command
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+
+            //execute command
+            SQLiteDataReader reader = cmd.ExecuteReader();
+
+            bool found = reader.Read();//true if found false if not
+
+            conn.Close();
+
+            if (found)
+            {
+                //open connection
+                conn.Open();
+
+                //Update the winning column for the user
+                sql = "UPDATE " + difficultyStr + "Score SET ties = ties + 1 WHERE username='" + player.getUsername() + "'";
+
+                //create command
+                cmd = new SQLiteCommand(sql, conn);
+
+                //execute command
+                cmd.ExecuteNonQuery();
+
+                //Now lets check if the highest score needs to be updated for that table
+                sql = "UPDATE " + difficultyStr + "Score SET highestScore = " + player.getScore() + " WHERE username='" +
+                    player.getUsername() + "' AND highestScore<" + player.getScore();
+
+                //create command
+                cmd = new SQLiteCommand(sql, conn);
+
+                //execute command
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            else
+            {
+                conn.Open();
+
+                //insert the user into table
+                sql = "INSERT INTO " + difficultyStr + "Score (username, wins, loses, highestScore, ties) VALUES('" +
+                    player.getUsername() + "', 0, 0, " + player.getScore() + ", 1)";
+
+                //create command
+                cmd = new SQLiteCommand(sql, conn);
+
+                //execute command
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+            }
         }
 
         //Function to add a losing point to the database
@@ -866,8 +1063,8 @@ namespace WpfApplication3
                 conn.Open();
 
                 //create sql
-                string addsql = "INSERT INTO " + difficultyStr + "Score (username, wins, loses, highestScore) VALUES('" +
-                    player.getUsername() + "', 0, 1, " + player.getScore().ToString() + ")";
+                string addsql = "INSERT INTO " + difficultyStr + "Score (username, wins, loses, highestScore, ties) VALUES('" +
+                    player.getUsername() + "', 0, 1, " + player.getScore().ToString() + ", 0)";
 
                 //create command
                 cmd = new SQLiteCommand(addsql, conn);
@@ -897,10 +1094,12 @@ namespace WpfApplication3
         }
 
         //Set the stats for player
-        private void setStats(User player, object playerSender, object winsSender, object loseSender, object highestScoreSender)
+        private void setStats(User player, object playerSender, object scoreSender, object winsSender, object tiesSender, object loseSender, object highestScoreSender)
         {
             Label playerLabel = playerSender as Label;
+            Label scoreLabel = scoreSender as Label;
             Label winsLabel = winsSender as Label;
+            Label tiesLabel = tiesSender as Label;
             Label loseLabel = loseSender as Label;
             Label highScoreLabel = highestScoreSender as Label;
 
@@ -922,7 +1121,9 @@ namespace WpfApplication3
             while (reader.Read())
             {
                 playerLabel.Content = reader["username"] + ":";
+                scoreLabel.Content = "Score: " + player.getScore();
                 winsLabel.Content = "Wins: " + reader["wins"];
+                tiesLabel.Content = "Ties: " + reader["ties"];
                 loseLabel.Content = "Loses: " + reader["loses"];
                 highScoreLabel.Content = "Highest Score: " + reader["highestScore"];
             }
@@ -945,7 +1146,7 @@ namespace WpfApplication3
                 //Change players
                 changePlayers();
 
-                if (player2.getUsername() == "CPU")
+                if (player2.getUsername() == "CPU" && moveCounter < 36)
                 {
                     AI();
                 }
@@ -970,7 +1171,7 @@ namespace WpfApplication3
             //Check if the game is over
             if (moveCounter == 36)
             {
-                endGame();
+                gameOver();
             }
 
         }
@@ -1663,7 +1864,7 @@ namespace WpfApplication3
             //Check if the game is over
             if (moveCounter == 36)
             {
-                endGame();
+                gameOver();
             }
             else
             {
@@ -1683,9 +1884,9 @@ namespace WpfApplication3
 
                     Random rand = new Random();
 
-                    num = rand.Next(1);
+                    num = rand.Next(9);
 
-                    if (num == 0)
+                    if (num < 3)
                     {
                         easyAI();
                     }

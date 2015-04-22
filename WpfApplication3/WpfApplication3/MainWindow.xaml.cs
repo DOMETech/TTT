@@ -553,7 +553,7 @@ namespace WpfApplication3
             conn.Open();
 
             //create sql query to display 
-            string sql = "SELECT * FROM " + difficultySelected + "Score ORDER BY wins DESC, highestScore DESC, loses ASC";
+            string sql = "SELECT * FROM " + difficultySelected + "Score ORDER BY wins DESC, highestScore DESC, ties DESC, loses ASC";
 
             //create command
             SQLiteCommand cmd = new SQLiteCommand(sql, conn);
@@ -565,6 +565,7 @@ namespace WpfApplication3
             //arrays to store the information
             string[] usernames = new string[6];
             string[] wins = new string[6];
+            string[] ties = new string[6];
             string[] loses = new string[6];
             string[] highestScore = new string[6];
 
@@ -581,6 +582,7 @@ namespace WpfApplication3
                 {
                     usernames[i] = reader["username"].ToString();
                     wins[i] = reader["wins"].ToString();
+                    ties[i] = reader["ties"].ToString();
                     loses[i] = reader["loses"].ToString();
                     highestScore[i] = reader["highestScore"].ToString();
 
@@ -600,31 +602,37 @@ namespace WpfApplication3
 
             firstPlaceNameLabel.Content = "1. " + usernames[0];
             firstPlaceWinsLabel.Content = wins[0];
+            firstPlaceTiesLabel.Content = ties[0];
             firstPlaceLosesLabel.Content = loses[0];
             firstPlaceHighestLabel.Content = highestScore[0];
 
             secondPlaceNameLabel.Content = "2. " + usernames[1];
             secondPlaceWinsLabel.Content = wins[1];
+            secondPlaceTiesLabel.Content = ties[1];
             secondPlaceLosesLabel.Content = loses[1];
             secondPlaceHighestLabel.Content = highestScore[1];
 
             thirdPlaceNameLabel.Content = "3. " + usernames[2];
             thirdPlaceWinsLabel.Content = wins[2];
+            thirdPlaceTiesLabel.Content = ties[2];
             thirdPlaceLosesLabel.Content = loses[2];
             thirdPlaceHighestLabel.Content = highestScore[2];
 
             fourthPlaceNameLabel.Content = "4. " + usernames[3];
             fourthPlaceWinsLabel.Content = wins[3];
+            fourthPlaceTiesLabel.Content = ties[3];
             fourthPlaceLosesLabel.Content = loses[3];
             fourthPlaceHighestLabel.Content = highestScore[3];
 
             fifthPlaceNameLabel.Content = "5. " + usernames[4];
             fifthPlaceWinsLabel.Content = wins[4];
+            fifthPlaceTiesLabel.Content = ties[4];
             fifthPlaceLosesLabel.Content = loses[4];
             fifthPlaceHighestLabel.Content = highestScore[4];
 
             sixthPlaceNameLabel.Content = "6. " + usernames[5];
             sixthPlaceWinsLabel.Content = wins[5];
+            sixthPlaceTiesLabel.Content = ties[5];
             sixthPlaceLosesLabel.Content = loses[5];
             sixthPlaceHighestLabel.Content = highestScore[5];
 

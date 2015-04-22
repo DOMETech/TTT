@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="GameWindow1" mc:Ignorable="d" x:Class="WpfApplication3.GameWindow"
-        Title="GameWindow" Height="900" Width="1440" Background="Black"
+        Title="GameWindow" Height="768" Width="1027" Background="Black"
         VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStyle="None"
         WindowState="Maximized">
     <Grid x:Name="gameBoard">
@@ -64,14 +64,14 @@
         <Button x:Name="F4" Content="" Grid.Column="5" Grid.Row="6" Background="White" Click="placeMark"/>
         <Button x:Name="F5" Content="" Grid.Column="6" Grid.Row="6" Background="White" Click="placeMark"/>
         <Button x:Name="F6" Content="" Grid.Column="7" Grid.Row="6" Background="White" Click="placeMark"/>
-        <Label x:Name="player1Label" Content="Player 1:" Grid.Row="1" Foreground="White" FontSize="68" HorizontalAlignment="Right"/>
-        <Label x:Name="player2Label" Content="Player 2:" Foreground="White" FontSize="68" Grid.Column="9" Grid.Row="1" HorizontalAlignment="Left"/>
-        <Label x:Name="player1Mark" Content="X" Grid.Row="2" Foreground="DarkGray"  FontSize="68" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" FontWeight="Bold"/>
-        <Label x:Name="player2Mark" Content="O" Foreground="LightGray" FontSize="68" Grid.Column="9" Grid.Row="2" HorizontalAlignment="Left" Background="{x:Null}" VerticalAlignment="Center" FontWeight="Bold"/>
-        <Label x:Name="score1Label" Content="Score" Grid.Row="4" Foreground="White" FontSize="68" HorizontalAlignment="Right" Height="99" VerticalAlignment="Top"/>
-        <Label x:Name="score2Label" Content="Score" Foreground="White" FontSize="68" Grid.Column="9" Grid.Row="4" HorizontalAlignment="Left"/>
-        <Label x:Name="gameModeLabel" Content="Game Mode" Grid.Column="1" Grid.ColumnSpan="8" Foreground="White" FontSize="68" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label x:Name="exitButton" Content="Exit" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" MouseLeftButtonDown="exitGameMessage"/>
+        <Label x:Name="player1Label" Content="Player 1:" Foreground="White" FontSize="28" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label x:Name="player2Label" Content="Player 2:" Foreground="White" FontSize="28" Grid.Column="9" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label x:Name="player1Mark" Content="X" Grid.Row="2" Foreground="DarkGray"  FontSize="28" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" FontWeight="Bold"/>
+        <Label x:Name="player2Mark" Content="O" Foreground="LightGray" FontSize="28" Grid.Column="9" Grid.Row="2" HorizontalAlignment="Left" Background="{x:Null}" VerticalAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="score1Label" Content="Score" Grid.Row="4" Foreground="White" FontSize="28" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Label x:Name="score2Label" Content="Score" Foreground="White" FontSize="28" Grid.Column="9" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label x:Name="gameModeLabel" Content="Game Mode" Grid.Column="1" Grid.ColumnSpan="8" Foreground="White" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="exitButton" Content="Exit" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" MouseLeftButtonDown="exitGameMessage"/>
         <Grid x:Name="selectWhoStartsPanel" Grid.ColumnSpan="10" Grid.RowSpan="8" Background="Black" d:IsHidden="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150*"/>
@@ -81,9 +81,9 @@
                 <RowDefinition Height="159*"/>
                 <RowDefinition Height="736*"/>
             </Grid.RowDefinitions>
-            <Label x:Name="selectWhoStartsLabel" Content="Select Who Starts The Game" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="68" Foreground="White" Height="106" Margin="243,27,243,26" Width="909" Grid.ColumnSpan="2"/>
-            <Label x:Name="selectPlayer1Label" Content="Player 1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="68" Foreground="White" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer1Action"/>
-            <Label x:Name="selectPlayer2Label" Content="Player 2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="68" Foreground="White" Grid.Column="1" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer2Action"/>
+            <Label x:Name="selectWhoStartsLabel" Content="Select Who Starts The Game" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Foreground="White" Grid.ColumnSpan="2"/>
+            <Label x:Name="selectPlayer1Label" Content="Player 1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28" Foreground="White" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer1Action"/>
+            <Label x:Name="selectPlayer2Label" Content="Player 2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28" Foreground="White" Grid.Column="1" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="selectPlayer2Action"/>
         </Grid>
         <Rectangle x:Name="playerOneIndicator" Fill="#FF3BB9D1" HorizontalAlignment="Right" Height="30" VerticalAlignment="Bottom" Width="30" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
             <Rectangle.RenderTransform>
@@ -116,12 +116,12 @@
                 <ColumnDefinition Width="605*"/>
                 <ColumnDefinition Width="114*"/>
             </Grid.ColumnDefinitions>
-            <Label x:Name="yesButton" Content="Yes" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="exitGame"/>
+            <Label x:Name="yesButton" Content="Yes" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="exitGame"/>
             <StackPanel x:Name="exitMessage" Grid.Column="1" Orientation="Vertical" Grid.ColumnSpan="2">
-                <Label x:Name="exitMessLabel1" Content="Are you sure you want to exit?" Foreground="White" FontSize="68" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label x:Name="exitMessLabel2" Content="message label 2" HorizontalAlignment="Center" Foreground="White" FontSize="58" Margin="0,0,1,0" VerticalAlignment="Center"/>
+                <Label x:Name="exitMessLabel1" Content="Are you sure you want to exit?" Foreground="White" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="exitMessLabel2" Content="message label 2" HorizontalAlignment="Center" Foreground="White" FontSize="38" Margin="0,0,1,0" VerticalAlignment="Center"/>
             </StackPanel>
-            <Label x:Name="noButton" Content="No" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="backToGame"/>
+            <Label x:Name="noButton" Content="No" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="backToGame"/>
         </Grid>
         <Grid x:Name="displayPlayerStats" Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="10" Background="#FF211F1F" Visibility="Hidden">
             <Grid.RowDefinitions>
@@ -135,20 +135,24 @@
                 <ColumnDefinition Width="615*"/>
                 <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions>
-            <Label x:Name="gameOverLabel" Content="Game Over" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Foreground="White" FontSize="60"/>
+            <Label x:Name="gameOverLabel" Content="Game Over" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Foreground="White" FontSize="38"/>
             <StackPanel x:Name="player1StatsPanel" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-                <Label x:Name="player1StatsLabel" Content="player 1" Foreground="White" HorizontalAlignment="Center" FontSize="68"/>
-                <Label x:Name="player1StatsWinsLabel" Content="Wins:" Foreground="White" FontSize="68"/>
-                <Label x:Name="player1StatsLosesLabel" Content="Loses:" Foreground="White" FontSize="68"/>
-                <Label x:Name="player1StatsHighestScoreLabel" Content="Highest Score:" Foreground="White" FontSize="68"/>
+                <Label x:Name="player1StatsLabel" Content="player 1" Foreground="White" HorizontalAlignment="Center" FontSize="28"/>
+                <Label x:Name="player1StatsScoreLabel" Content="Score:" Foreground="White" FontSize="28"/>
+                <Label x:Name="player1StatsWinsLabel" Content="Wins:" Foreground="White" FontSize="28"/>
+                <Label x:Name="player1StatsTiesLabel" Content="Ties:" Foreground="White" FontSize="28"/>
+                <Label x:Name="player1StatsLosesLabel" Content="Loses:" Foreground="White" FontSize="28"/>
+                <Label x:Name="player1StatsHighestScoreLabel" Content="Highest Score:" Foreground="White" FontSize="28"/>
             </StackPanel>
             <StackPanel x:Name="player2StatsPanel" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-                <Label x:Name="player2StatsLabel" Content="player 2" HorizontalAlignment="Center" FontSize="68" Foreground="White"/>
-                <Label x:Name="player2StatsWinsLabel" Content="Wins:" FontSize="68" Foreground="White"/>
-                <Label x:Name="player2StatsLosesLabel" Content="Loses:" FontSize="68" Foreground="White"/>
-                <Label x:Name="player2StatsHighestScoreLabel" Content="Highest Score:" FontSize="68" Foreground="White"/>
+                <Label x:Name="player2StatsLabel" Content="player 2" HorizontalAlignment="Center" FontSize="28" Foreground="White"/>
+                <Label x:Name="player2StatsScoreLabel" Content="Score:" FontSize="28" Foreground="White"/>
+                <Label x:Name="player2StatsWinsLabel" Content="Wins:" FontSize="28" Foreground="White"/>
+                <Label x:Name="player2StatsTiesLabel" Content="Ties:" FontSize="28" Foreground="White"/>
+                <Label x:Name="player2StatsLosesLabel" Content="Loses:" FontSize="28" Foreground="White"/>
+                <Label x:Name="player2StatsHighestScoreLabel" Content="Highest Score:" FontSize="28" Foreground="White"/>
             </StackPanel>
-            <Label x:Name="backToMainMenuButton" Content="Back To Main Menu" FontSize="68" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="4" Grid.Row="2" VerticalAlignment="Center" MouseLeftButtonDown="backToMainMenu" Height="102" Margin="100,0,100,-1"/>
+            <Label x:Name="backToMainMenuButton" Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="4" Grid.Row="2" VerticalAlignment="Center" MouseLeftButtonDown="backToMainMenu" Height="102" Margin="100,0,100,-1"/>
         </Grid>
     </Grid>
 </Window>

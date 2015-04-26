@@ -5,6 +5,7 @@
         Title="MainWindow" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
         WindowStyle="None" WindowState="Maximized" Background="Black" Width="1027"  Height="768">
     <Grid x:Name="menuGrid">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -32,27 +33,27 @@
         		MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="soundOnOff"/>
 
         </StackPanel>
-        <StackPanel x:Name="singlePlayerPanel" VerticalAlignment="Center" d:IsHidden="True">
+        <StackPanel x:Name="singlePlayerPanel" VerticalAlignment="Center" HorizontalAlignment="Center" d:IsHidden="True">
             <Label x:Name="loginLabel"  Content="Login" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label x:Name="usernameLabel"  Content="Username:" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="usernameTextBoxSinglePlayer" MaxLength="10" Height="52" TextWrapping="Wrap" Margin="80,0" FontSize="28" GotFocus="usernameTextBox_GotFocus" GotMouseCapture="usernameTextBox_GotMouseCapture"/>
+            <TextBox x:Name="usernameTextBoxSinglePlayer" MaxLength="10" Height="52" TextWrapping="Wrap" Margin="80,0" FontSize="28" GotFocus="usernameTextBox_GotFocus" GotMouseCapture="usernameTextBox_GotMouseCapture" Width="734"/>
             <Label x:Name="passwordLabel"  Content="Password:" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="passwordBoxSinglePlayer" MaxLength="32" Height="52"  FontSize="28" Margin="80,0" GotFocus="passwordTextBox_GotFocus" GotMouseCapture="passwordTextBox_GotMouseCapture"/>
+            <PasswordBox x:Name="passwordBoxSinglePlayer" MaxLength="32" Height="52"  FontSize="28" Margin="80,0" GotFocus="passwordTextBox_GotFocus" GotMouseCapture="passwordTextBox_GotMouseCapture" Width="734"/>
             <Label x:Name="enterButtonSinglePlayer"  Content="Enter" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="loginToSinglePlayerGame"/>
             <Label x:Name="playAsGuestButtonSinglePlayer"  Content="Play As Guest" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="playAsGuestSinglePlayer"/>
             <Label x:Name="registerButtonSinglePlayer"   Content="Register" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="registration"/>
             <Label x:Name="backToMenuButton"  Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu"/>
         </StackPanel>
-        <StackPanel x:Name="registerPanel" VerticalAlignment="Center" d:IsHidden="True">
+        <StackPanel x:Name="registerPanel" VerticalAlignment="Center" HorizontalAlignment="Center" d:IsHidden="True">
             <Label x:Name="registerLabel"  Content="Registration" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label x:Name="userRegLabel"  Content="Username:" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="userRegTextBox" MaxLength="10" Height="52" TextWrapping="Wrap" FontSize="28" GotFocus="usernameTextBox_GotFocus" GotMouseCapture="usernameTextBox_GotMouseCapture"/>
+            <TextBox x:Name="userRegTextBox" MaxLength="10" Height="52" TextWrapping="Wrap" FontSize="28" GotFocus="usernameTextBox_GotFocus" GotMouseCapture="usernameTextBox_GotMouseCapture" Width="734"/>
             <Label x:Name="emailLabel"  Content="Email:" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="emailTextBox" MaxLength="65" Height="52" TextWrapping="Wrap" FontSize="28" GotFocus="usernameTextBox_GotFocus" GotMouseCapture="usernameTextBox_GotMouseCapture"/>
+            <TextBox x:Name="emailTextBox" MaxLength="65" Height="52" TextWrapping="Wrap" FontSize="28" GotFocus="usernameTextBox_GotFocus" GotMouseCapture="usernameTextBox_GotMouseCapture" Width="734"/>
             <Label x:Name="passRegLabel" Content="Password:" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="passRegPassBox" MaxLength="32" Height="52"  FontSize="28" GotFocus="passwordTextBox_GotFocus" GotMouseCapture="passwordTextBox_GotMouseCapture"/>
+            <PasswordBox x:Name="passRegPassBox" MaxLength="32" Height="52"  FontSize="28" GotFocus="passwordTextBox_GotFocus" GotMouseCapture="passwordTextBox_GotMouseCapture" Width="734"/>
             <Label x:Name="confirmPassLabel"  Content="Confirm Password:" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="confirmPassRegPassBox" MaxLength="32" Height="52"  FontSize="28" GotFocus="passwordTextBox_GotFocus" GotMouseCapture="passwordTextBox_GotMouseCapture"/>
+            <PasswordBox x:Name="confirmPassRegPassBox" MaxLength="32" Height="52"  FontSize="28" GotFocus="passwordTextBox_GotFocus" GotMouseCapture="passwordTextBox_GotMouseCapture" Width="734"/>
             <Label x:Name="enterButton_Copy"  Content="Enter" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="enterButtonRegistration"/>
             <Label x:Name="backToMenuLabel_Copy"  Content="Back" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backButtonReg"/>
         </StackPanel>
@@ -154,7 +155,7 @@
                 <Label x:Name="backToMenuButton2_Copy" Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu"/>
             </StackPanel>
         </Grid>
-        <StackPanel x:Name="gameRuelsPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel x:Name="gameRuelsPanel" HorizontalAlignment="Center" VerticalAlignment="Center" d:IsHidden="True">
             <Label x:Name="gameRulesTitle" Foreground="White" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Game Rule" />
             <TextBox x:Name="rulesDescription" IsReadOnly="True" Cursor="Arrow" Focusable="False" FocusVisualStyle="{x:Null}" TextAlignment="Center" TextWrapping="Wrap" Text="The player with the highest score at the end of the game wins. Players score points for each 4-stones-in-a-row. If you have more than 4 stones in a row, they may be counted as multiple points. For example, 5-in-a-row gives you two points. The game ends  when there are no more available spaces to select. You have the option of playing against the computer with varying difficulties or play against another person." Height="354" Width="630" Background="Black" Foreground="White" BorderBrush="{x:Null}" FontSize="28" IsReadOnlyCaretVisible="True"/>
             <Label x:Name="backToMenuButton_Copy"  Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" MouseLeftButtonDown="backToMainMenu"/>

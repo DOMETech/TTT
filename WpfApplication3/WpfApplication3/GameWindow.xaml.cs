@@ -227,41 +227,41 @@ namespace WpfApplication3
             buttons = new Button[36];
 
             buttons[0] = A1;
-            buttons[1] = A6;
-            buttons[2] = F1;
-            buttons[3] = F6;
-            buttons[4] = B2;
-            buttons[5] = B5;
-            buttons[6] = E2;
-            buttons[7] = E5;
-            buttons[8] = C3;
-            buttons[9] = C4;
-            buttons[10] = D3;
-            buttons[11] = D4;
-            buttons[12] = A2;
-            buttons[13] = A5;
-            buttons[14] = F2;
-            buttons[15] = F5;
-            buttons[16] = B3;
-            buttons[17] = B4;
-            buttons[18] = E3;
-            buttons[19] = E4;
-            buttons[20] = B1;
-            buttons[21] = B6;
-            buttons[22] = E1;
-            buttons[23] = E6;
-            buttons[24] = C2;
-            buttons[25] = C5;
-            buttons[26] = D2;
-            buttons[27] = D5;
-            buttons[28] = A3;
-            buttons[29] = A4;
-            buttons[30] = C6;
-            buttons[31] = D6;
+            buttons[1] = A2;
+            buttons[2] = A3;
+            buttons[3] = A4;
+            buttons[4] = A5;
+            buttons[5] = A6;
+            buttons[6] = B1;
+            buttons[7] = B2;
+            buttons[8] = B3;
+            buttons[9] = B4;
+            buttons[10] = B5;
+            buttons[11] = B6;
+            buttons[12] = C1;
+            buttons[13] = C2;
+            buttons[14] = C3;
+            buttons[15] = C4;
+            buttons[16] = C5;
+            buttons[17] = C6;
+            buttons[18] = D1;
+            buttons[19] = D2;
+            buttons[20] = D3;
+            buttons[21] = D4;
+            buttons[22] = D5;
+            buttons[23] = D6;
+            buttons[24] = E1;
+            buttons[25] = E2;
+            buttons[26] = E3;
+            buttons[27] = E4;
+            buttons[28] = E5;
+            buttons[29] = E6;
+            buttons[30] = F1;
+            buttons[31] = F2;
             buttons[32] = F3;
             buttons[33] = F4;
-            buttons[34] = C1;
-            buttons[35] = D1;
+            buttons[34] = F5;
+            buttons[35] = F6;
 
         }
 
@@ -1978,16 +1978,13 @@ namespace WpfApplication3
             int size = buttons.Length;
 
             //If the AI has the first move then it will set it in a random location so it does not start in the same place all the time
-            if (moveCounter == 0)
+            if (moveCounter > 0)
             {
-                firstMove = true;
-            }
 
-            //FIRST PRIORITY:
-            //CPU checks if it is about to score
-            //Set a temporary button on top of checking button selection to see what is better
-            if (!firstMove)
-            {
+                //FIRST PRIORITY:
+                //CPU checks if it is about to score
+                //Set a temporary button on top of checking button selection to see what is better
+           
                 //Fist it is going to check for three scoreing possibilites that  means
                 //Check where it can score vertical horizontal and diagonal at the same time
                 for (int i = 0; i < buttons.Length; i++)
@@ -2004,39 +2001,119 @@ namespace WpfApplication3
                             location = i;
                             break;
 
+                        }                     
+                        else
+                        {
+                            setAIArrays();
+                        }
+
+                       
+                        // Now check if there is two opportunites to score diagonal and horizontal and found is false
+                        if (checkHorizontal(true) && checkDiagonal(true))
+                        {
+                            found = true;
+                            location = i;
+                            break;
                         }
                         else
                         {
-                            //Reset the AI arrays and button content
+                            setAIArrays();
+                        }
+
+                        //Now check diagonal and vertical and found is false
+                        if (checkDiagonal(true) && checkVerticalScore(true))
+                        {
+                            found = true;
+                            location = i;
+                            break;
+                        }
+                        else
+                        {
+                            setAIArrays();
+                        }
+
+                        //Now check horizontal and vertical and found is false
+                        if (checkVerticalScore(true) && checkHorizontal(true))
+                        {
+                            found = true;
+                            location = i;
+                            break;
+                        }
+                        else
+                        {
+                            setAIArrays();
+                        }
+
+                        //Now check individual
+                        //Check diagonal
+                        if (checkDiagonal(true))
+                        {
+                            found = true;
+                            location = i;
+                            break;
+                        }
+                        //Check vertical
+                        else if (checkVerticalScore(true))
+                        {
+                            found = true;
+                            location = i;
+                            break;
+                        }
+                        //Check horizontal
+                        else if (checkHorizontal(true))
+                        {
+                            found = true;
+                            location = i;
+                            break;
+                        }
+                        // if all has been check and nothing is found then set that button back to empty
+                        else
+                        {
                             buttons[i].Content = "";
                             setAIArrays();
                         }
+                        
                     }
                 }
 
-                //Now check if a combination of two can score
-                //That means if vertical and horizontal or diagonal and horizontal or diagonal and vertical can
-                //Score at the same time
+                //SECOND PRIORITY:
+                //Block user from scoring
                 if (!found)
                 {
+                    location = 0;
+
                     for (int i = 0; i < buttons.Length; i++)
                     {
                         if (buttons[i].Content == "")
                         {
                             buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                            buttons[i].Content = "O";
+                            buttons[i].Content = "X";
+
+                            //check if location has the opportunity to score in three places first
+                            if (checkHorizontal(true) && checkVerticalScore(true) && checkDiagonal(true))
+                            {
+                                found = true;
+                                location = i;
+                                buttons[i].Content = "";
+                                break;
+
+                            }
+                            else
+                            {
+                                setAIArrays();
+                            }
+
 
                             // Now check if there is two opportunites to score diagonal and horizontal and found is false
                             if (checkHorizontal(true) && checkDiagonal(true))
                             {
                                 found = true;
                                 location = i;
+                                buttons[i].Content = "";
                                 break;
                             }
                             else
                             {
-                                //Reset the AI arrays and button content
-                                buttons[i].Content = "";
                                 setAIArrays();
                             }
 
@@ -2045,12 +2122,11 @@ namespace WpfApplication3
                             {
                                 found = true;
                                 location = i;
+                                buttons[i].Content = "";
                                 break;
                             }
                             else
                             {
-                                //Reset the AI arrays and button content
-                                buttons[i].Content = "";
                                 setAIArrays();
                             }
 
@@ -2059,21 +2135,57 @@ namespace WpfApplication3
                             {
                                 found = true;
                                 location = i;
+                                buttons[i].Content = "";
                                 break;
                             }
                             else
                             {
-                                //Reset the AI arrays and button content
-                            buttons[i].Content = "";
-                            setAIArrays();
+                                setAIArrays();
                             }
+
+                            //Now check individual
+                            //Check diagonal
+                            if (checkDiagonal(true))
+                            {
+                                found = true;
+                                location = i;
+                                buttons[i].Content = "";
+                                break;
+                            }
+                            //Check vertical
+                            else if (checkVerticalScore(true))
+                            {
+                                found = true;
+                                location = i;
+                                buttons[i].Content = "";
+                                break;
+                            }
+                            //Check horizontal
+                            else if (checkHorizontal(true))
+                            {
+                                found = true;
+                                location = i;
+                                buttons[i].Content = "";
+                                break;
+                            }
+                            // if all has been check and nothing is found then set that button back to empty
+                            else
+                            {
+                                buttons[i].Content = "";
+                                setAIArrays();
+                            }
+
                         }
                     }
+
                 }
 
-                //Now check for one indivdual one
+                //THIRD PRIORITY:
+                //Set mark next to two adjacents
                 if (!found)
                 {
+                    location = 0;
+
                     for (int i = 0; i < buttons.Length; i++)
                     {
                         if (buttons[i].Content == "")
@@ -2081,442 +2193,97 @@ namespace WpfApplication3
                             buttons[i].Foreground = new SolidColorBrush(Colors.White);
                             buttons[i].Content = "O";
 
-                            //Check diagonal
-                            if (checkDiagonal(true))
+                            for (int j = i + 1; j < buttons.Length; j++)
                             {
-                                found = true;
-                            }
-                            //Check vertical
-                            else if (checkVerticalScore(true))
-                            {
-                                found = true;
-                            }
-                            //Check horizontal
-                            else if (checkHorizontal(true))
-                            {
-                                found = true;
-                            }
-                            // if all has been check and nothing is found then set that button back to empty
-                            else
-                            {
-                                buttons[i].Content = "";
-                            }
-
-                            //If it was found break the loop 
-                            if (found)
-                            {
-                                location = i;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
-
-            //SECOND PRIORITY:
-            //Block user from scoring
-            if (!found)
-            {
-                location = 0;
-
-                for (int i = 0; i < buttons.Length; i++)
-                {
-                    if (buttons[i].Content == "")
-                    {
-                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                        buttons[i].Content = "X";
-
-                        if (checkHorizontal(true))
-                        {
-
-                            found = true;
-                        }
-                        else if (checkVerticalScore(true))
-                        {
-
-                            found = true;
-                        }
-                        else if (checkDiagonal(true))
-                        {
-
-                            found = true;
-                        }
-                        else
-                        {
-                            buttons[i].Content = "";
-                        }
-
-
-                        if (found)
-                        {
-                            location = i;
-                            break;
-                        }
-                    }
-                }
-
-            }
-
-            //THIRD PRIORITY:
-            //Set mark next to two adjacents
-            if (!found)
-            {                
-                location = 0;
-
-                for (int i = 0; i < buttons.Length; i++)
-                {
-                    if (buttons[i].Content == "")
-                    {
-                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                        buttons[i].Content = "O";
-
-                        for (int j = i + 1; j < buttons.Length; j++)
-                        {
-                            if (buttons[j].Content == "")
-                            {
-                                buttons[j].Foreground = new SolidColorBrush(Colors.White);
-                                buttons[j].Content = "O";
-
-                                if (checkHorizontal(true))
+                                if (buttons[j].Content == "")
                                 {
+                                    buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                    buttons[j].Content = "O";
 
-                                    found = true;
-                                }
-                                else if (checkVerticalScore(true))
-                                {
-
-                                    found = true;
-                                }
-                                else if (checkDiagonal(true))
-                                {
-
-                                    found = true;
-                                }
-                                else
-                                {
-
-                                    buttons[j].Content = "";
-                                }
-
-
-                                if (found)
-                                {
-                                    buttons[j].Content = "";
-                                    location = i;
-                                    break;
-                                }
-                            }
-                        }
-                        if (found)
-                        {                            
-                            break;
-                        }
-                        else
-                        {
-                            buttons[i].Content = "";
-                        }
-                    }
-                }
-            }
-
-            //FOURTH PRIORITY:
-            //Block Users if it has two adjacents
-            if (!found)
-            {
-                location = 0;
-
-                for (int i = 0; i < buttons.Length; i++)
-                {
-                    if (buttons[i].Content == "")
-                    {
-                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                        buttons[i].Content = "X";
-
-                        for (int j = i + 1; j < buttons.Length; j++)
-                        {
-                            if (buttons[j].Content == "")
-                            {
-                                buttons[j].Foreground = new SolidColorBrush(Colors.White);
-                                buttons[j].Content = "X";
-
-                                if (checkHorizontal(true))
-                                {
-
-                                    found = true;
-                                }
-                                else if (checkVerticalScore(true))
-                                {
-
-                                    found = true;
-                                }
-                                else if (checkDiagonal(true))
-                                {
-
-                                    found = true;
-                                }
-                                else
-                                {
-
-                                    buttons[j].Content = "";
-                                }
-
-
-                                if (found)
-                                {
-                                    buttons[j].Content = "";
-                                    location = i;
-                                    break;
-                                }
-                            }
-                        }
-                        if (found)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            buttons[i].Content = "";
-                        }
-                    }
-                }
-            }
-                        
-            //FIFTH PRIORITY
-            //Check to place to adjacent
-            if (!found)
-            {
-                location = 0;
-
-                for (int i = 0; i < buttons.Length; i++)
-                {
-                    if (buttons[i].Content == "")
-                    {
-                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                        buttons[i].Content = "O";
-
-                        for (int k = i + 1; k < buttons.Length; k++)
-                        {
-                            if (buttons[k].Content == "")
-                            {
-                                buttons[k].Foreground = new SolidColorBrush(Colors.White);
-                                buttons[k].Content = "O";
-
-                                for (int j = k + 1; j < buttons.Length; j++)
-                                {
-                                    if (buttons[j].Content == "")
+                                    //check if location has the opportunity to score in three places first
+                                    if (checkHorizontal(true) && checkVerticalScore(true) && checkDiagonal(true))
                                     {
-                                        buttons[j].Foreground = new SolidColorBrush(Colors.White);
-                                        buttons[j].Content = "O";
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
 
-                                        if (checkHorizontal(true))
-                                        {
-
-                                            found = true;
-                                        }
-                                        else if (checkVerticalScore(true))
-                                        {
-
-                                            found = true;
-                                        }
-                                        else if (checkDiagonal(true))
-                                        {
-
-                                            found = true;
-                                        }
-                                        else
-                                        {
-                                            buttons[k].Content = "";
-                                            buttons[j].Content = "";
-                                        }
-
-
-                                        if (found)
-                                        {
-                                            buttons[k].Content = "";
-                                            buttons[j].Content = "";
-                                            location = i;
-                                            break;
-                                        }
                                     }
-                                }
-                            }
-                            if (found)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                buttons[k].Content = "";
-                            }
-                        }
-                        if (found)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            buttons[i].Content = "";
-                        }
-                    }
-                }
-            }
-
-            //SXTH PRIORITY
-            //Look for empty scoring possibilities
-            if (!found)
-            {
-                location = 0;
-
-                for (int i = 0; i < buttons.Length; i++)
-                {
-                    if (buttons[i].Content == "")
-                    {
-                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                        buttons[i].Content = "O";
-
-                        for (int k = i + 1; k < buttons.Length; k++)
-                        {
-                            if (buttons[k].Content == "")
-                            {
-                                buttons[k].Foreground = new SolidColorBrush(Colors.White);
-                                buttons[k].Content = "O";
-
-                                for (int l = k + 1; l < buttons.Length; l++)
-                                {
-                                    if (buttons[l].Content == "")
+                                    else
                                     {
-                                        buttons[l].Foreground = new SolidColorBrush(Colors.White);
-                                        buttons[l].Content = "O";
-
-                                        for (int j = l + 1; j < buttons.Length; j++)
-                                        {
-                                            if (buttons[j].Content == "")
-                                            {
-                                                buttons[j].Foreground = new SolidColorBrush(Colors.White);
-                                                buttons[j].Content = "O";
-
-                                                if (checkHorizontal(true))
-                                                {
-
-                                                    found = true;
-                                                }
-                                                else if (checkVerticalScore(true))
-                                                {
-
-                                                    found = true;
-                                                }
-                                                else if (checkDiagonal(true))
-                                                {
-
-                                                    found = true;
-                                                }
-                                                else
-                                                {
-                                                    buttons[k].Content = "";
-                                                    buttons[j].Content = "";
-                                                    buttons[l].Content = "";
-                                                }
-
-
-                                                if (found)
-                                                {
-                                                    buttons[k].Content = "";
-                                                    buttons[j].Content = "";
-                                                    buttons[l].Content = "";
-                                                    location = i;
-                                                    break;
-                                                }
-                                            }
-                                        }                                        
+                                        setAIArrays();
                                     }
-                                    if (found)
+
+
+                                    // Now check if there is two opportunites to score diagonal and horizontal and found is false
+                                    if (checkHorizontal(true) && checkDiagonal(true))
                                     {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
                                         break;
                                     }
                                     else
                                     {
-                                        buttons[l].Content = "";
+                                        setAIArrays();
                                     }
-                                }                                
-                            }
-                            if (found)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                buttons[k].Content = "";
-                            }
-                        }
-                        if (found)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            buttons[i].Content = "";
-                        }
-                    }
-                }
-            }
 
-            //SEVENTH PRIORITY
-            //Block one where scoring possibility
-            if (!found)
-            {
-                location = 0;
-
-                for (int i = 0; i < buttons.Length; i++)
-                {
-                    if (buttons[i].Content == "")
-                    {
-                        buttons[i].Foreground = new SolidColorBrush(Colors.White);
-                        buttons[i].Content = "X";
-
-                        for (int k = i + 1; k < buttons.Length; k++)
-                        {
-                            if (buttons[k].Content == "")
-                            {
-                                buttons[k].Foreground = new SolidColorBrush(Colors.White);
-                                buttons[k].Content = "X";
-
-                                for (int j = k + 1; j < buttons.Length; j++)
-                                {
-                                    if (buttons[j].Content == "")
+                                    //Now check diagonal and vertical and found is false
+                                    if (checkDiagonal(true) && checkVerticalScore(true))
                                     {
-                                        buttons[j].Foreground = new SolidColorBrush(Colors.White);
-                                        buttons[j].Content = "X";
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        setAIArrays();
+                                    }
 
-                                        if (checkHorizontal(true))
-                                        {
+                                    //Now check horizontal and vertical and found is false
+                                    if (checkVerticalScore(true) && checkHorizontal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        setAIArrays();
+                                    }
 
-                                            found = true;
-                                        }
-                                        else if (checkVerticalScore(true))
-                                        {
-
-                                            found = true;
-                                        }
-                                        else if (checkDiagonal(true))
-                                        {
-
-                                            found = true;
-                                        }
-                                        else
-                                        {
-                                            buttons[k].Content = "";
-                                            buttons[j].Content = "";
-                                        }
-
-
-                                        if (found)
-                                        {
-                                            buttons[k].Content = "";
-                                            buttons[j].Content = "";
-                                            location = i;
-                                            break;
-                                        }
+                                    //Now check individual
+                                    //Check diagonal
+                                    if (checkDiagonal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    //Check vertical
+                                    else if (checkVerticalScore(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    //Check horizontal
+                                    else if (checkHorizontal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    // if all has been check and nothing is found then set that button back to empty
+                                    else
+                                    {
+                                        buttons[j].Content = "";
+                                        setAIArrays();
                                     }
                                 }
                             }
@@ -2526,58 +2293,611 @@ namespace WpfApplication3
                             }
                             else
                             {
-                                buttons[k].Content = "";
+                                buttons[i].Content = "";
                             }
                         }
-                        if (found)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            buttons[i].Content = "";
-                        }
                     }
                 }
-            }
 
-            //EIGHT PRIORITY
-            //Set in a corner
-            if (!found)
-            {
-                location = 0;
-                for (int i = 0; i < buttons.Length; i++)
+                //FOURTH PRIORITY:
+                //Block Users if it has two adjacents
+                if (!found)
                 {
-                    if (buttons[i].Content == "")
+                    location = 0;
+
+                    for (int i = 0; i < buttons.Length; i++)
                     {
-                        location = i;
-                        found = true;
-                        break;
+                        if (buttons[i].Content == "")
+                        {
+                            buttons[i].Foreground = new SolidColorBrush(Colors.White);
+                            buttons[i].Content = "X";
+
+                            for (int j = i + 1; j < buttons.Length; j++)
+                            {
+                                if (buttons[j].Content == "")
+                                {
+                                    buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                    buttons[j].Content = "X";
+
+                                    //check if location has the opportunity to score in three places first
+                                    if (checkHorizontal(true) && checkVerticalScore(true) && checkDiagonal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+
+                                    }
+                                    else
+                                    {
+                                        setAIArrays();
+                                    }
+
+
+                                    // Now check if there is two opportunites to score diagonal and horizontal and found is false
+                                    if (checkHorizontal(true) && checkDiagonal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        setAIArrays();
+                                    }
+
+                                    //Now check diagonal and vertical and found is false
+                                    if (checkDiagonal(true) && checkVerticalScore(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        setAIArrays();
+                                    }
+
+                                    //Now check horizontal and vertical and found is false
+                                    if (checkVerticalScore(true) && checkHorizontal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        setAIArrays();
+                                    }
+
+                                    //Now check individual
+                                    //Check diagonal
+                                    if (checkDiagonal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    //Check vertical
+                                    else if (checkVerticalScore(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    //Check horizontal
+                                    else if (checkHorizontal(true))
+                                    {
+                                        found = true;
+                                        location = i;
+                                        buttons[j].Content = "";
+                                        break;
+                                    }
+                                    // if all has been check and nothing is found then set that button back to empty
+                                    else
+                                    {
+                                        buttons[j].Content = "";
+                                        setAIArrays();
+                                    }
+                                }
+                            }
+                            if (found)
+                            {
+                                buttons[i].Content = "";
+                                break;
+                            }
+                            else
+                            {
+                                buttons[i].Content = "";
+                            }
+                        }
                     }
-                    
+                }
+
+                //FIFTH PRIORITY
+                //Check to place to adjacent
+                if (!found)
+                {
+                    location = 0;
+
+                    for (int i = 0; i < buttons.Length; i++)
+                    {
+                        if (buttons[i].Content == "")
+                        {
+                            buttons[i].Foreground = new SolidColorBrush(Colors.White);
+                            buttons[i].Content = "O";
+
+                            for (int k = i + 1; k < buttons.Length; k++)
+                            {
+                                if (buttons[k].Content == "")
+                                {
+                                    buttons[k].Foreground = new SolidColorBrush(Colors.White);
+                                    buttons[k].Content = "O";
+
+                                    for (int j = k + 1; j < buttons.Length; j++)
+                                    {
+                                        if (buttons[j].Content == "")
+                                        {
+                                            buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                            buttons[j].Content = "O";
+
+                                            //check if location has the opportunity to score in three places first
+                                            if (checkHorizontal(true) && checkVerticalScore(true) && checkDiagonal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+
+                                            // Now check if there is two opportunites to score diagonal and horizontal and found is false
+                                            if (checkHorizontal(true) && checkDiagonal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+                                            //Now check diagonal and vertical and found is false
+                                            if (checkDiagonal(true) && checkVerticalScore(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+                                            //Now check horizontal and vertical and found is false
+                                            if (checkVerticalScore(true) && checkHorizontal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+                                            //Now check individual
+                                            //Check diagonal
+                                            if (checkDiagonal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            //Check vertical
+                                            else if (checkVerticalScore(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            //Check horizontal
+                                            else if (checkHorizontal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            // if all has been check and nothing is found then set that button back to empty
+                                            else
+                                            {
+                                                buttons[j].Content = "";                                                
+                                                setAIArrays();
+                                            }
+                                        }
+                                    }
+                                }
+                                if (found)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    buttons[k].Content = "";
+                                }
+                            }
+                            if (found)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                buttons[i].Content = "";
+                            }
+                        }
+                    }
+                }
+
+                //SXTH PRIORITY
+                //Look for empty scoring possibilities
+                if (!found)
+                {
+                    location = 0;
+
+                    for (int i = 0; i < buttons.Length; i++)
+                    {
+                        if (buttons[i].Content == "")
+                        {
+                            buttons[i].Foreground = new SolidColorBrush(Colors.White);
+                            buttons[i].Content = "O";
+
+                            for (int k = i + 1; k < buttons.Length; k++)
+                            {
+                                if (buttons[k].Content == "")
+                                {
+                                    buttons[k].Foreground = new SolidColorBrush(Colors.White);
+                                    buttons[k].Content = "O";
+
+                                    for (int l = k + 1; l < buttons.Length; l++)
+                                    {
+                                        if (buttons[l].Content == "")
+                                        {
+                                            buttons[l].Foreground = new SolidColorBrush(Colors.White);
+                                            buttons[l].Content = "O";
+
+                                            for (int j = l + 1; j < buttons.Length; j++)
+                                            {
+                                                if (buttons[j].Content == "")
+                                                {
+                                                    buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                                    buttons[j].Content = "O";
+
+                                                    //check if location has the opportunity to score in three places first
+                                                    if (checkHorizontal(true) && checkVerticalScore(true) && checkDiagonal(true))
+                                                    {
+                                                        found = true;
+                                                        location = i;
+                                                        buttons[j].Content = "";
+                                                        buttons[k].Content = "";
+                                                        buttons[l].Content = "";
+                                                        break;
+
+                                                    }
+                                                    else
+                                                    {
+                                                        setAIArrays();
+                                                    }
+
+
+                                                    // Now check if there is two opportunites to score diagonal and horizontal and found is false
+                                                    if (checkHorizontal(true) && checkDiagonal(true))
+                                                    {
+                                                        found = true;
+                                                        location = i;
+                                                        buttons[j].Content = "";
+                                                        buttons[k].Content = "";
+                                                        buttons[l].Content = "";
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        setAIArrays();
+                                                    }
+
+                                                    //Now check diagonal and vertical and found is false
+                                                    if (checkDiagonal(true) && checkVerticalScore(true))
+                                                    {
+                                                        found = true;
+                                                        location = i;
+                                                        buttons[j].Content = "";
+                                                        buttons[k].Content = "";
+                                                        buttons[l].Content = "";
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        setAIArrays();
+                                                    }
+
+                                                    //Now check horizontal and vertical and found is false
+                                                    if (checkVerticalScore(true) && checkHorizontal(true))
+                                                    {
+                                                        found = true;
+                                                        location = i;
+                                                        buttons[j].Content = "";
+                                                        buttons[k].Content = "";
+                                                        buttons[l].Content = "";
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        setAIArrays();
+                                                    }
+
+                                                    //Now check individual
+                                                    //Check diagonal
+                                                    if (checkDiagonal(true))
+                                                    {
+                                                        found = true;
+                                                        location = i;
+                                                        buttons[j].Content = "";
+                                                        buttons[k].Content = "";
+                                                        buttons[l].Content = "";
+                                                        break;
+                                                    }
+                                                    //Check vertical
+                                                    else if (checkVerticalScore(true))
+                                                    {
+                                                        found = true;
+                                                        location = i;
+                                                        buttons[j].Content = "";
+                                                        buttons[k].Content = "";
+                                                        buttons[l].Content = "";
+                                                        break;
+                                                    }
+                                                    //Check horizontal
+                                                    else if (checkHorizontal(true))
+                                                    {
+                                                        found = true;
+                                                        location = i;
+                                                        buttons[j].Content = "";
+                                                        buttons[k].Content = "";
+                                                        buttons[l].Content = "";
+                                                        break;
+                                                    }
+                                                    // if all has been check and nothing is found then set that button back to empty
+                                                    else
+                                                    {
+                                                        buttons[j].Content = "";
+                                                        setAIArrays();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (found)
+                                        {
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            buttons[l].Content = "";
+                                        }
+                                    }
+                                }
+                                if (found)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    buttons[k].Content = "";
+                                }
+                            }
+                            if (found)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                buttons[i].Content = "";
+                            }
+                        }
+                    }
+                }
+
+                //SEVENTH PRIORITY
+                //Block one where scoring possibility
+                if (!found)
+                {
+                    location = 0;
+
+                    for (int i = 0; i < buttons.Length; i++)
+                    {
+                        if (buttons[i].Content == "")
+                        {
+                            buttons[i].Foreground = new SolidColorBrush(Colors.White);
+                            buttons[i].Content = "X";
+
+                            for (int k = i + 1; k < buttons.Length; k++)
+                            {
+                                if (buttons[k].Content == "")
+                                {
+                                    buttons[k].Foreground = new SolidColorBrush(Colors.White);
+                                    buttons[k].Content = "X";
+
+                                    for (int j = k + 1; j < buttons.Length; j++)
+                                    {
+                                        if (buttons[j].Content == "")
+                                        {
+                                            buttons[j].Foreground = new SolidColorBrush(Colors.White);
+                                            buttons[j].Content = "X";
+
+                                            //check if location has the opportunity to score in three places first
+                                            if (checkHorizontal(true) && checkVerticalScore(true) && checkDiagonal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+
+                                            // Now check if there is two opportunites to score diagonal and horizontal and found is false
+                                            if (checkHorizontal(true) && checkDiagonal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+                                            //Now check diagonal and vertical and found is false
+                                            if (checkDiagonal(true) && checkVerticalScore(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+                                            //Now check horizontal and vertical and found is false
+                                            if (checkVerticalScore(true) && checkHorizontal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                setAIArrays();
+                                            }
+
+                                            //Now check individual
+                                            //Check diagonal
+                                            if (checkDiagonal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            //Check vertical
+                                            else if (checkVerticalScore(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            //Check horizontal
+                                            else if (checkHorizontal(true))
+                                            {
+                                                found = true;
+                                                location = i;
+                                                buttons[j].Content = "";
+                                                buttons[k].Content = "";
+                                                break;
+                                            }
+                                            // if all has been check and nothing is found then set that button back to empty
+                                            else
+                                            {
+                                                buttons[j].Content = "";
+                                                setAIArrays();
+                                            }
+                                        }
+                                    }
+                                }
+                                if (found)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    buttons[k].Content = "";
+                                }
+                            }
+                            if (found)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                buttons[i].Content = "";
+                            }
+                        }
+                    }
                 }
 
 
-            }
+                //EIGHT PRIOTRITY:
+                //Random position
+                //If nothing else works set it in a random spot
+                if (!found)
+                {
+                    setAIArrays();
+                    easyAI();
+                }
+                //Set the mark where it is found
+                else
+                {
+                    setAIArrays();
 
-            //NINTH PRIOTRITY:
-            //Random position
-            //If nothing else works set it in a random spot
-            if (!found || firstMove)
-            {   
-                setAIArrays();
-                easyAI();
+                    buttons[location].Content = "O";
+                    buttons[location].FontSize = 60;
+                    buttons[location].Foreground = new SolidColorBrush(Colors.LightGray);
+                    buttons[location].FontWeight = FontWeights.SemiBold;
+
+                }
             }
-            //Set the mark where it is found
+            //IF CPU has first move then put in random spot
             else
             {
                 setAIArrays();
-                
-                buttons[location].Content = "O";
-                buttons[location].FontSize = 60;
-                buttons[location].Foreground = new SolidColorBrush(Colors.LightGray);
-                buttons[location].FontWeight = FontWeights.SemiBold;
-                
+                easyAI();
             }
         }
 

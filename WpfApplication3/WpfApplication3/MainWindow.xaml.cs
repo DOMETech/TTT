@@ -31,7 +31,7 @@ namespace WpfApplication3
         private User player1;
         private User player2;
         private bool singlePlayerGame;
-        private bool sound;
+        
 
         public MainWindow()
         {
@@ -50,11 +50,7 @@ namespace WpfApplication3
             difficultyPanel.Visibility = Visibility.Hidden;
             gameRuelsPanel.Visibility = Visibility.Hidden;
 
-            
-            sound = false;//erase this if sound wanted in the program and uncomment the 2 lines bellow
-            //sound = true;
-            //soundElement.Play();
-
+          
         }
 
         public MainWindow(bool alreadyOpened)
@@ -77,10 +73,6 @@ namespace WpfApplication3
                 difficultyPanel.Visibility = Visibility.Hidden;
                 gameRuelsPanel.Visibility = Visibility.Hidden;
 
-
-                sound = false;//erase this if sound wanted in the program and uncomment the 2 lines bellow
-                //sound = true;
-                //soundElement.Play();
             }
         }
 
@@ -120,42 +112,6 @@ namespace WpfApplication3
         private void quitProgram(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        //sound button action
-        private void soundOnOff(object sender, MouseButtonEventArgs e)
-        {
-
-
-            if (sound)
-            {
-                soundButton.Content = "Sound: Off";
-                sound = false;
-
-                try
-                {
-                    soundElement.Pause();
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show("Error pausing sound:\n" + err);
-                }
-
-            }
-            else
-            {
-                soundButton.Content = "Sound: On";
-                sound = true;
-                soundElement.Play();
-
-            }
-        }
-
-        //looping function for sound
-        private void soundElement_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            soundElement.Position = TimeSpan.Zero;
-            soundElement.Play();
         }
 
         //single player button selection

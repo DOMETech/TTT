@@ -152,7 +152,8 @@
                 <Label x:Name="player2StatsLosesLabel" Content="Loses:" FontSize="28" Foreground="White"/>
                 <Label x:Name="player2StatsHighestScoreLabel" Content="Highest Score:" FontSize="28" Foreground="White"/>
             </StackPanel>
-            <Label x:Name="backToMainMenuButton" Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.ColumnSpan="4" Grid.Row="2" VerticalAlignment="Center" MouseLeftButtonDown="backToMainMenu" Height="102" Margin="100,0,100,-1"/>
+            <Label x:Name="backToMainMenuButton" Content="Back To Main Menu" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.Row="2" VerticalAlignment="Center" Grid.Column="2" MouseLeftButtonDown="backToMainMenu"/>
+            <Label x:Name="displayGameBoardButton" Content="Display Game Board" FontSize="28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="highlightLabel" MouseLeave="unhighlightLabel" Grid.Row="2" VerticalAlignment="Center" MouseLeftButtonDown="displayGameBoardStats" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>

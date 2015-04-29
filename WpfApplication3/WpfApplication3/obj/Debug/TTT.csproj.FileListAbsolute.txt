@@ -1,0 +1,16 @@
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe.config
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.exe
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.pdb
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.pdb
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\bin\Debug\System.Data.SQLite.xml
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\TTT.csprojResolveAssemblyReference.cache
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\GameWindow.baml
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.baml
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\GameWindow.g.cs
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.g.cs
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\App.g.cs
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.cache
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.g.resources
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.Properties.Resources.resources
+C:\Users\Ricky\Desktop\Head First C#\WpfApplication3\WpfApplication3\obj\Debug\TTT.csproj.GenerateResource.Cache
